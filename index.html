@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TaskEarn - Complete Earning Platform
-    </title>
+    <title>TaskEarn - Complete Earning Platform</title>
+    <!-- Ad Scripts (Preserved) -->
     <script data-cfasync="false" src="https://abscloud.org/1/4b5052c3fa04dd31bc06ee0589554d00"></script>
-<script data-cfasync="false" src="https://bauval.org/14/c3997dc24a36599fc285d153ee28c70a"></script>
+    <script data-cfasync="false" src="https://bauval.org/14/c3997dc24a36599fc285d153ee28c70a"></script>
+    
     <style>
         * {
             box-sizing: border-box;
@@ -26,11 +27,11 @@
         header {
             background-color: #ffffff;
             border-bottom: 2px solid #e0e0e0;
-            padding: 15px 20px;
+            padding: 12px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -38,11 +39,18 @@
 
         .logo {
             font-size: 22px;
-            font-weight: bold;
+            font-weight: 700;
             color: #2ecc71;
             display: flex;
             align-items: center;
             gap: 8px;
+            cursor: pointer;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
         .wallet-badge {
@@ -55,8 +63,21 @@
             font-size: 14px;
         }
 
+        .profile-chip {
+            background: #3498db;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
         .container {
-            max-width: 800px;
+            max-width: 850px;
             margin: 20px auto;
             padding: 0 15px;
             width: 100%;
@@ -83,6 +104,7 @@
             transition: 0.2s ease;
             width: 100%;
             font-size: 15px;
+            text-align: center;
         }
 
         .btn:hover {
@@ -98,6 +120,13 @@
         .btn-outline:hover {
             background: #2ecc71;
             color: white;
+        }
+
+        .btn-danger {
+            background-color: #e74c3c;
+        }
+        .btn-danger:hover {
+            background-color: #c0392b;
         }
 
         .form-group {
@@ -122,14 +151,15 @@
         /* Nav Tabs */
         .nav-tabs {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             overflow-x: auto;
             padding-bottom: 10px;
             margin-bottom: 15px;
+            scrollbar-width: thin;
         }
 
         .tab-btn {
-            padding: 8px 16px;
+            padding: 9px 16px;
             background: #e9ecef;
             border: none;
             border-radius: 20px;
@@ -137,11 +167,14 @@
             cursor: pointer;
             font-weight: 600;
             color: #555;
+            font-size: 14px;
+            transition: all 0.2s;
         }
 
         .tab-btn.active {
             background: #2ecc71;
             color: white;
+            box-shadow: 0 2px 6px rgba(46, 204, 113, 0.3);
         }
 
         /* Task Grid */
@@ -197,6 +230,82 @@
             transition: transform 3s cubic-bezier(0.17, 0.67, 0.12, 0.99);
         }
 
+        /* Transaction History Table */
+        .history-list {
+            margin-top: 15px;
+        }
+
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+            background: #fdfdfd;
+            border-radius: 6px;
+            margin-bottom: 8px;
+        }
+
+        .history-item .tx-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .history-item .tx-title {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .history-item .tx-date {
+            font-size: 11px;
+            color: #888;
+        }
+
+        .history-item .tx-amount {
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .tx-plus { color: #27ae60; }
+        .tx-minus { color: #e74c3c; }
+
+        /* Banner Ad Box */
+        .ad-banner-box {
+            background: #f8f9fa;
+            border: 1px dashed #cccccc;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            margin: 15px 0;
+            min-height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            font-size: 12px;
+        }
+
+        /* Profile Details */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .profile-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #2ecc71;
+            color: white;
+            font-size: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
         /* Auth Sections */
         .hidden {
             display: none !important;
@@ -216,9 +325,14 @@
 
     <!-- Header -->
     <header>
-        <div class="logo">🪙 TaskEarn</div>
-        <div id="userInfo" class="wallet-badge hidden">
-            🪙 <span id="coinBalance">0</span> Coins (₹<span id="rupeeBalance">0.00</span>)
+        <div class="logo" onclick="switchTab('tasksTab')">🪙 TaskEarn</div>
+        <div class="header-actions">
+            <div id="userInfo" class="wallet-badge hidden">
+                🪙 <span id="coinBalance">0</span> Coins (₹<span id="rupeeBalance">0.00</span>)
+            </div>
+            <div id="profileBtn" class="profile-chip hidden" onclick="switchTab('profileTab')">
+                👤 Profile
+            </div>
         </div>
     </header>
 
@@ -250,10 +364,19 @@
             <!-- Navigation Tabs -->
             <div class="nav-tabs">
                 <button class="tab-btn active" onclick="switchTab('tasksTab')">🎯 Daily Tasks</button>
+                <button class="tab-btn" onclick="switchTab('videoTab')">📺 Watch Videos</button>
                 <button class="tab-btn" onclick="switchTab('spinTab')">🎰 Spin Wheel</button>
                 <button class="tab-btn" onclick="switchTab('withdrawTab')">💸 Withdraw</button>
+                <button class="tab-btn" onclick="switchTab('historyTab')">📜 History</button>
+                <button class="tab-btn" onclick="switchTab('profileTab')">👤 Profile</button>
                 <button class="tab-btn" onclick="switchTab('supportTab')">💬 Helpline</button>
                 <button class="tab-btn" onclick="logout()" style="color: #e74c3c;">🚪 Logout</button>
+            </div>
+
+            <!-- AD CONTAINER TOP -->
+            <div class="ad-banner-box" id="topAdBanner">
+                <!-- AdSense / Network Code Placement Here -->
+                <span>📢 Advertisement / Sponsored Partner Ads</span>
             </div>
 
             <!-- TAB 1: TASKS -->
@@ -336,7 +459,28 @@
                 </div>
             </div>
 
-            <!-- TAB 2: SPIN WHEEL -->
+            <!-- TAB 2: WATCH VIDEOS -->
+            <div id="videoTab" class="tab-content hidden">
+                <div class="card">
+                    <h3>📺 Watch Sponsored Videos</h3>
+                    <p style="font-size: 13px; color: #666; margin-bottom: 15px;">Watch full short ads/videos to earn extra coins.</p>
+                    
+                    <div class="task-grid">
+                        <div class="task-card">
+                            <div class="task-title">Video Ad #1</div>
+                            <div class="task-reward">+35 Coins</div>
+                            <button class="btn" onclick="watchVideoTask('Video Ad #1', 35)">Watch Video (15s)</button>
+                        </div>
+                        <div class="task-card">
+                            <div class="task-title">Video Ad #2</div>
+                            <div class="task-reward">+45 Coins</div>
+                            <button class="btn" onclick="watchVideoTask('Video Ad #2', 45)">Watch Video (20s)</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: SPIN WHEEL -->
             <div id="spinTab" class="tab-content hidden">
                 <div class="card wheel-container">
                     <h3>Lucky Spin & Win</h3>
@@ -346,7 +490,7 @@
                 </div>
             </div>
 
-            <!-- TAB 3: WITHDRAW -->
+            <!-- TAB 4: WITHDRAW -->
             <div id="withdrawTab" class="tab-content hidden">
                 <div class="card">
                     <h3>Instant Withdrawal</h3>
@@ -380,7 +524,39 @@
                 </div>
             </div>
 
-            <!-- TAB 4: SUPPORT -->
+            <!-- TAB 5: TRANSACTION HISTORY -->
+            <div id="historyTab" class="tab-content hidden">
+                <div class="card">
+                    <h3>📜 Transaction & Earning History</h3>
+                    <p style="font-size: 13px; color: #666; margin-bottom: 10px;">Track all your earned coins and withdrawal requests.</p>
+                    <div class="history-list" id="historyList">
+                        <!-- History items will be dynamically inserted here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 6: PROFILE SECTION -->
+            <div id="profileTab" class="tab-content hidden">
+                <div class="card">
+                    <div class="profile-header">
+                        <div class="profile-avatar" id="profileAvatarLetter">U</div>
+                        <div>
+                            <h3 id="profileEmailDisplay">user@example.com</h3>
+                            <p style="font-size: 13px; color: #666;">Verified Member</p>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                        <p style="margin-bottom: 8px;"><strong>🪙 Total Coins Balance:</strong> <span id="profileCoins">0</span> Coins</p>
+                        <p style="margin-bottom: 8px;"><strong>💵 Rupee Value:</strong> ₹<span id="profileRupees">0.00</span></p>
+                        <p><strong>🔗 My Referral Code:</strong> <span id="referralCode">TASK100</span></p>
+                    </div>
+
+                    <button class="btn btn-danger" onclick="logout()">Logout Account</button>
+                </div>
+            </div>
+
+            <!-- TAB 7: SUPPORT -->
             <div id="supportTab" class="tab-content hidden">
                 <div class="card">
                     <h3>Trusted Support & Helpline</h3>
@@ -406,11 +582,15 @@
         let isSignUp = false;
         let coins = parseInt(localStorage.getItem('taskEarnCoins')) || 100; // Welcome 100 bonus
         let loggedInUser = localStorage.getItem('taskEarnUser') || null;
+        let history = JSON.parse(localStorage.getItem('taskEarnHistory')) || [
+            { title: 'Welcome Bonus', amount: 100, type: 'credit', date: new Date().toLocaleDateString() }
+        ];
 
         // Elements
         const authSection = document.getElementById('authSection');
         const dashboardSection = document.getElementById('dashboardSection');
         const userInfo = document.getElementById('userInfo');
+        const profileBtn = document.getElementById('profileBtn');
         const authForm = document.getElementById('authForm');
         const authTitle = document.getElementById('authTitle');
         const authSubmitBtn = document.getElementById('authSubmitBtn');
@@ -425,6 +605,7 @@
                 showAuth();
             }
             updateBalance();
+            renderHistory();
         };
 
         // Auth Mode Toggle
@@ -460,13 +641,16 @@
             authSection.classList.add('hidden');
             dashboardSection.classList.remove('hidden');
             userInfo.classList.remove('hidden');
+            profileBtn.classList.remove('hidden');
             updateBalance();
+            updateProfileInfo();
         }
 
         function showAuth() {
             authSection.classList.remove('hidden');
             dashboardSection.classList.add('hidden');
             userInfo.classList.add('hidden');
+            profileBtn.classList.add('hidden');
         }
 
         function logout() {
@@ -479,6 +663,17 @@
             document.getElementById('coinBalance').innerText = coins;
             document.getElementById('rupeeBalance').innerText = (coins / 100).toFixed(2);
             localStorage.setItem('taskEarnCoins', coins);
+            
+            // Profile update
+            document.getElementById('profileCoins').innerText = coins;
+            document.getElementById('profileRupees').innerText = (coins / 100).toFixed(2);
+        }
+
+        function updateProfileInfo() {
+            if(loggedInUser) {
+                document.getElementById('profileEmailDisplay').innerText = loggedInUser;
+                document.getElementById('profileAvatarLetter').innerText = loggedInUser.charAt(0).toUpperCase();
+            }
         }
 
         // Tab Switcher
@@ -490,16 +685,60 @@
             buttons.forEach(btn => btn.classList.remove('active'));
 
             document.getElementById(tabId).classList.remove('hidden');
-            event.currentTarget.classList.add('active');
+            
+            // Highlight active button if exists
+            buttons.forEach(btn => {
+                if(btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(tabId)) {
+                    btn.classList.add('active');
+                }
+            });
         }
 
-        // Task Implementations
+        // Add Coins & History Tracking
         function addCoins(amount, taskName) {
             coins += amount;
             updateBalance();
+            
+            // Add to transaction history
+            addTransaction(taskName, amount, 'credit');
             alert(`🎉 Success! You earned ${amount} coins from ${taskName}.`);
         }
 
+        function addTransaction(title, amount, type) {
+            const tx = {
+                title: title,
+                amount: amount,
+                type: type, // 'credit' or 'debit'
+                date: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+            };
+            history.unshift(tx);
+            localStorage.setItem('taskEarnHistory', JSON.stringify(history));
+            renderHistory();
+        }
+
+        function renderHistory() {
+            const listEl = document.getElementById('historyList');
+            if(!listEl) return;
+            
+            if(history.length === 0) {
+                listEl.innerHTML = '<p style="text-align:center; color:#888; font-size:13px;">No transactions yet.</p>';
+                return;
+            }
+
+            listEl.innerHTML = history.map(item => `
+                <div class="history-item">
+                    <div class="tx-info">
+                        <span class="tx-title">${item.title}</span>
+                        <span class="tx-date">${item.date}</span>
+                    </div>
+                    <div class="tx-amount ${item.type === 'credit' ? 'tx-plus' : 'tx-minus'}">
+                        ${item.type === 'credit' ? '+' : '-'}${item.amount} Coins
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Task Implementations
         function completeTask(key, amount) {
             const today = new Date().toDateString();
             const lastClaim = localStorage.getItem('last_' + key);
@@ -518,6 +757,13 @@
             setTimeout(() => {
                 addCoins(reward, "Visit Link Task");
             }, 3000);
+        }
+
+        function watchVideoTask(title, reward) {
+            alert(`▶️ Watching sponsored video... Please wait 15 seconds.`);
+            setTimeout(() => {
+                addCoins(reward, title);
+            }, 2000);
         }
 
         function mathQuizTask() {
@@ -602,6 +848,7 @@
 
             coins -= amount;
             updateBalance();
+            addTransaction(`Withdrawal (${method}: ${details})`, amount, 'debit');
             alert(`✅ Withdrawal Request Submitted Successfully!\nAmount: ₹${amount/100}\nMethod: ${method}\nDetails: ${details}\nStatus: Pending (Processing within 24 hours)`);
         }
     </script>
