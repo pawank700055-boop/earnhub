@@ -3,389 +3,607 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TaskEarn - Complete Tasks & Earn</title>
+    <title>TaskEarn - Complete Earning Platform
+    </title>
+    <script data-cfasync="false" src="https://abscloud.org/1/4b5052c3fa04dd31bc06ee0589554d00"></script>
+<script data-cfasync="false" src="https://bauval.org/14/c3997dc24a36599fc285d153ee28c70a"></script>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; padding: 0; }
-        header { background-color: #4CAF50; color: white; padding: 15px 20px; text-align: center; display: flex; justify-content: space-between; align-items: center; }
-        h1 { margin: 0; font-size: 24px; }
-        .balance { font-size: 20px; font-weight: bold; background: rgba(0,0,0,0.2); padding: 5px 15px; border-radius: 20px; }
-        .container { max-width: 800px; margin: 20px auto; padding: 0 15px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
-        .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center; cursor: pointer; transition: 0.3s; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
-        .card h3 { margin: 10px 0; color: #333; }
-        
-        /* Modals */
-        .modal { display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); }
-        .modal-content { background-color: white; margin: 15% auto; padding: 20px; border-radius: 10px; width: 90%; max-width: 400px; text-align: center; position: relative; }
-        .close { position: absolute; right: 15px; top: 10px; font-size: 28px; font-weight: bold; cursor: pointer; }
-        
-        button { background-color: #4CAF50; color: white; border: none; padding: 10px 20px; margin-top: 10px; border-radius: 5px; cursor: pointer; font-size: 16px; width: 100%; }
-        button:hover { background-color: #45a049; }
-        button:disabled { background-color: #ccc; cursor: not-allowed; }
-        input[type="text"], input[type="number"] { width: 90%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: #ffffff;
+            border-bottom: 2px solid #e0e0e0;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #2ecc71;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .wallet-badge {
+            background: #eef9f2;
+            border: 1px solid #2ecc71;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: 600;
+            color: #27ae60;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 15px;
+            width: 100%;
+            flex: 1;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid #eef0f2;
+        }
+
+        .btn {
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s ease;
+            width: 100%;
+            font-size: 15px;
+        }
+
+        .btn:hover {
+            background-color: #27ae60;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #2ecc71;
+            border: 2px solid #2ecc71;
+        }
+
+        .btn-outline:hover {
+            background: #2ecc71;
+            color: white;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        /* Nav Tabs */
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .tab-btn {
+            padding: 8px 16px;
+            background: #e9ecef;
+            border: none;
+            border-radius: 20px;
+            white-space: nowrap;
+            cursor: pointer;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .tab-btn.active {
+            background: #2ecc71;
+            color: white;
+        }
+
+        /* Task Grid */
+        .task-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 15px;
+        }
+
+        .task-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 15px;
+            background: #fafafa;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .task-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .task-reward {
+            color: #e67e22;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
 
         /* Spin Wheel */
-        .wheel-container { position: relative; width: 250px; height: 250px; margin: 20px auto; }
-        .wheel { width: 100%; height: 100%; border-radius: 50%; border: 5px solid #333; transition: transform 3s cubic-bezier(0.17, 0.67, 0.12, 0.99); background: conic-gradient(#f44336 0 60deg, #9c27b0 60deg 120deg, #2196f3 120deg 180deg, #4caf50 180deg 240deg, #ffeb3b 240deg 300deg, #ff9800 300deg 360deg); }
-        .pointer { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 15px solid transparent; border-right: 15px solid transparent; border-top: 30px solid #333; z-index: 10; }
-        
-        /* Scratch Card */
-        #scratch-area { width: 200px; height: 100px; background-color: #999; margin: 20px auto; line-height: 100px; color: transparent; font-size: 24px; font-weight: bold; border-radius: 10px; cursor: pointer; user-select: none; transition: background-color 0.5s; }
-        #scratch-area.scratched { background-color: #4CAF50; color: white; cursor: default; }
+        .wheel-container {
+            text-align: center;
+            padding: 20px 0;
+        }
 
-        /* Captcha Box */
-        .captcha-box { font-size: 24px; font-weight: bold; background: #eee; padding: 10px; letter-spacing: 5px; text-decoration: line-through; color: #555; display: inline-block; margin-bottom: 10px; user-select: none; }
+        .wheel {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 8px solid #2ecc71;
+            margin: 0 auto 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            background: conic-gradient(#f39c12 0deg 90deg, #e74c3c 90deg 180deg, #3498db 180deg 270deg, #2ecc71 270deg 360deg);
+            color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            transition: transform 3s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+        }
+
+        /* Auth Sections */
+        .hidden {
+            display: none !important;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 13px;
+            color: #777;
+            background: #fff;
+            border-top: 1px solid #eee;
+        }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>TaskEarn</h1>
-    <div class="balance">🪙 <span id="balance">0</span></div>
-</header>
-
-<div class="container">
-    <div class="card" onclick="dailyCheckIn()">
-        <h3>📅 Daily Check-in</h3>
-        <p>Get bonus once a day</p>
-    </div>
-    <div class="card" onclick="openModal('sponsorModal')">
-        <h3>🔗 Visit Sponsor Link</h3>
-        <p>Visit and wait 15 seconds</p>
-    </div>
-    <div class="card" onclick="openMathQuiz()">
-        <h3>🧮 Math Quiz</h3>
-        <p>Solve hard questions</p>
-    </div>
-    <div class="card" onclick="openScratchCard()">
-        <h3>🎟️ Scratch Card</h3>
-        <p>Scratch to win random coins</p>
-    </div>
-    <div class="card" onclick="openCaptcha()">
-        <h3>🔡 Solve Captcha</h3>
-        <p>Type exactly as shown</p>
-    </div>
-    <div class="card" onclick="openSurvey()">
-        <h3>📋 Survey</h3>
-        <p>Complete multi-step survey</p>
-    </div>
-    <div class="card" onclick="openSpinWheel()">
-        <h3>🎡 Spin Wheel</h3>
-        <p>Spin every 1 Hour</p>
-    </div>
-    <div class="card" onclick="openSocialModal('YouTube', 'https://youtube.com', 20)">
-        <h3>📺 Subscribe YouTube</h3>
-        <p>Watch for 20 seconds</p>
-    </div>
-    <div class="card" onclick="openSocialModal('Telegram', 'https://telegram.org', 15)">
-        <h3>✈️ Join Telegram</h3>
-        <p>Join & wait 15 seconds</p>
-    </div>
-    <div class="card" onclick="openReferral()">
-        <h3>👥 Refer a Friend</h3>
-        <p>Share link to earn</p>
-    </div>
-    <div class="card" onclick="openModal('helpModal')">
-        <h3>🎧 Helpline</h3>
-        <p>Contact Support</p>
-    </div>
-</div>
-
-<!-- Modals -->
-
-<!-- Sponsor Modal -->
-<div id="sponsorModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal('sponsorModal')">&times;</span>
-        <h2>Visit Sponsor</h2>
-        <p>Click below, wait for 15 seconds on the page to get your reward.</p>
-        <button id="sponsorBtn" onclick="visitSponsor()">Go to Website</button>
-    </div>
-</div>
-
-<!-- Math Modal -->
-<div id="mathModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal('mathModal')">&times;</span>
-        <h2>Math Quiz</h2>
-        <h3 id="mathQuestion"></h3>
-        <input type="number" id="mathAnswer" placeholder="Enter your answer">
-        <button onclick="checkMath()">Submit</button>
-    </div>
-</div>
-
-<!-- Captcha Modal -->
-<div id="captchaModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal('captchaModal')">&times;</span>
-        <h2>Solve Captcha</h2>
-        <div class="captcha-box" id="captchaText"></div>
-        <input type="text" id="captchaInput" placeholder="Type case-sensitive captcha">
-        <button onclick="checkCaptcha()">Verify</button>
-    </div>
-</div>
-
-<!-- Scratch Modal -->
-<div id="scratchModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal('scratchModal')">&times;</span>
-        <h2>Scratch Card</h2>
-        <div id="scratch-area" onclick="scratch()">Click to Scratch!</div>
-    </div>
-</div>
-
-<!-- Spin Modal -->
-<div id="spinModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal('spinModal')">&times;</span>
-        <h2>Spin Wheel</h2>
-        <p id="spinTimer" style="color:red; font-weight:bold;"></p>
-        <div class="wheel-container">
-            <div class="pointer"></div>
-            <div class="wheel" id="wheel"></div>
+    <!-- Header -->
+    <header>
+        <div class="logo">🪙 TaskEarn</div>
+        <div id="userInfo" class="wallet-badge hidden">
+            🪙 <span id="coinBalance">0</span> Coins (₹<span id="rupeeBalance">0.00</span>)
         </div>
-        <button id="spinBtn" onclick="spinWheel()">Spin Now</button>
-    </div>
-</div>
+    </header>
 
-<!-- Survey Modal -->
-<div id="surveyModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal('surveyModal')">&times;</span>
-        <h2>Feedback Survey</h2>
-        <div id="surveyContent">
-            <p>Q1: How much time do you spend here daily?</p>
-            <select id="q1"><option>Less than 1 hr</option><option>1-3 hrs</option><option>More than 3 hrs</option></select>
-            <p>Q2: What is your favorite task?</p>
-            <select id="q2"><option>Spin Wheel</option><option>Math Quiz</option><option>Scratch Card</option></select>
-            <button onclick="submitSurvey()">Submit Survey</button>
+    <div class="container">
+
+        <!-- AUTH SECTION -->
+        <div id="authSection" class="card">
+            <h2 id="authTitle" style="margin-bottom: 15px;">Login to TaskEarn</h2>
+            <form id="authForm">
+                <div class="form-group">
+                    <label>Email / Phone</label>
+                    <input type="text" id="authEmail" placeholder="Enter email or phone" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="authPassword" placeholder="Enter password" required>
+                </div>
+                <button type="submit" class="btn" id="authSubmitBtn">Login</button>
+            </form>
+            <p style="text-align: center; margin-top: 15px; font-size: 14px;">
+                <span id="toggleAuthText">Don't have an account?</span>
+                <a href="#" id="toggleAuthLink" style="color: #2ecc71; font-weight: bold;">Sign Up</a>
+            </p>
         </div>
+
+        <!-- MAIN DASHBOARD -->
+        <div id="dashboardSection" class="hidden">
+
+            <!-- Navigation Tabs -->
+            <div class="nav-tabs">
+                <button class="tab-btn active" onclick="switchTab('tasksTab')">🎯 Daily Tasks</button>
+                <button class="tab-btn" onclick="switchTab('spinTab')">🎰 Spin Wheel</button>
+                <button class="tab-btn" onclick="switchTab('withdrawTab')">💸 Withdraw</button>
+                <button class="tab-btn" onclick="switchTab('supportTab')">💬 Helpline</button>
+                <button class="tab-btn" onclick="logout()" style="color: #e74c3c;">🚪 Logout</button>
+            </div>
+
+            <!-- TAB 1: TASKS -->
+            <div id="tasksTab" class="tab-content">
+                <div class="card">
+                    <h3>10 Easy Ways to Earn Coins</h3>
+                    <p style="font-size: 13px; color: #666; margin-bottom: 15px;">Complete quick tasks to earn coins instantly. (100 Coins = ₹1)</p>
+                    
+                    <div class="task-grid">
+                        <!-- Task 1 -->
+                        <div class="task-card">
+                            <div class="task-title">1. Daily Check-in</div>
+                            <div class="task-reward">+50 Coins</div>
+                            <button class="btn" onclick="completeTask('dailyCheckin', 50)">Claim Daily Bonus</button>
+                        </div>
+
+                        <!-- Task 2 -->
+                        <div class="task-card">
+                            <div class="task-title">2. Visit Sponsor Link 1</div>
+                            <div class="task-reward">+30 Coins</div>
+                            <button class="btn btn-outline" onclick="openLinkTask('https://example.com', 30)">Open & View (15s)</button>
+                        </div>
+
+                        <!-- Task 3 -->
+                        <div class="task-card">
+                            <div class="task-title">3. Visit Sponsor Link 2</div>
+                            <div class="task-reward">+40 Coins</div>
+                            <button class="btn btn-outline" onclick="openLinkTask('https://example.com', 40)">Open & View (15s)</button>
+                        </div>
+
+                        <!-- Task 4 -->
+                        <div class="task-card">
+                            <div class="task-title">4. Simple Math Quiz</div>
+                            <div class="task-reward">+20 Coins</div>
+                            <button class="btn" onclick="mathQuizTask()">Solve Quiz</button>
+                        </div>
+
+                        <!-- Task 5 -->
+                        <div class="task-card">
+                            <div class="task-title">5. Quick Feedback Survey</div>
+                            <div class="task-reward">+100 Coins</div>
+                            <button class="btn" onclick="surveyTask()">Start Survey</button>
+                        </div>
+
+                        <!-- Task 6 -->
+                        <div class="task-card">
+                            <div class="task-title">6. Scratch Card</div>
+                            <div class="task-reward">Up to +80 Coins</div>
+                            <button class="btn" onclick="scratchTask()">Scratch Now</button>
+                        </div>
+
+                        <!-- Task 7 -->
+                        <div class="task-card">
+                            <div class="task-title">7. Solve Captcha</div>
+                            <div class="task-reward">+25 Coins</div>
+                            <button class="btn" onclick="captchaTask()">Solve Captcha</button>
+                        </div>
+
+                        <!-- Task 8 -->
+                        <div class="task-card">
+                            <div class="task-title">8. Subscribe YouTube</div>
+                            <div class="task-reward">+60 Coins</div>
+                            <button class="btn btn-outline" onclick="openLinkTask('https://youtube.com', 60)">Subscribe & Earn</button>
+                        </div>
+
+                        <!-- Task 9 -->
+                        <div class="task-card">
+                            <div class="task-title">9. Join Telegram Channel</div>
+                            <div class="task-reward">+50 Coins</div>
+                            <button class="btn btn-outline" onclick="openLinkTask('https://telegram.org', 50)">Join Channel</button>
+                        </div>
+
+                        <!-- Task 10 -->
+                        <div class="task-card">
+                            <div class="task-title">10. Refer a Friend</div>
+                            <div class="task-reward">+200 Coins</div>
+                            <button class="btn" onclick="referTask()">Copy Referral Link</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: SPIN WHEEL -->
+            <div id="spinTab" class="tab-content hidden">
+                <div class="card wheel-container">
+                    <h3>Lucky Spin & Win</h3>
+                    <p style="font-size: 14px; color: #666; margin-bottom: 20px;">Spin to win free coins every hour!</p>
+                    <div class="wheel" id="wheel">SPIN</div>
+                    <button class="btn" id="spinBtn" onclick="spinWheel()" style="max-width: 250px; margin: 0 auto;">Spin Now</button>
+                </div>
+            </div>
+
+            <!-- TAB 3: WITHDRAW -->
+            <div id="withdrawTab" class="tab-content hidden">
+                <div class="card">
+                    <h3>Instant Withdrawal</h3>
+                    <p style="font-size: 13px; color: #666; margin-bottom: 15px;">Minimum withdrawal is only 500 Coins (₹5.00) via UPI / PhonePe / Paytm / Google Pay.</p>
+
+                    <div class="form-group">
+                        <label>Select Payment Method</label>
+                        <select id="paymentMethod">
+                            <option value="UPI">UPI ID (Google Pay / PhonePe / Paytm)</option>
+                            <option value="Paytm">Paytm Wallet Number</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Payment Address / Phone Number</label>
+                        <input type="text" id="paymentDetails" placeholder="e.g. user@upi or 9876543210">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Select Coins to Redeem</label>
+                        <select id="withdrawAmount">
+                            <option value="500">500 Coins = ₹5.00</option>
+                            <option value="1000">1000 Coins = ₹10.00</option>
+                            <option value="2000">2000 Coins = ₹20.00</option>
+                            <option value="5000">5000 Coins = ₹50.00</option>
+                            <option value="10000">10000 Coins = ₹100.00</option>
+                        </select>
+                    </div>
+
+                    <button class="btn" onclick="processWithdrawal()">Submit Withdrawal Request</button>
+                </div>
+            </div>
+
+            <!-- TAB 4: SUPPORT -->
+            <div id="supportTab" class="tab-content hidden">
+                <div class="card">
+                    <h3>Trusted Support & Helpline</h3>
+                    <p style="font-size: 14px; margin-bottom: 15px;">If you face any payment issues or have questions, contact us directly:</p>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid #2ecc71;">
+                        <p><strong>📧 Email Support:</strong> support@taskearn.com</p>
+                        <p style="margin-top: 8px;"><strong>💬 Telegram Support:</strong> @TaskEarnHelpDesk</p>
+                        <p style="margin-top: 8px;"><strong>🕒 Working Hours:</strong> 10:00 AM - 7:00 PM (Mon-Sat)</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
     </div>
-</div>
 
-<!-- Social Modal -->
-<div id="socialModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal('socialModal')">&times;</span>
-        <h2 id="socialTitle">Social Task</h2>
-        <p id="socialDesc"></p>
-        <button id="socialBtn">Go & Complete Task</button>
+    <div class="footer">
+        &copy; 2026 TaskEarn. All rights reserved. Safe & Secure Earning Platform.
     </div>
-</div>
 
-<!-- Referral Modal -->
-<div id="referModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal('referModal')">&times;</span>
-        <h2>Refer a Friend</h2>
-        <p>Share this link with your friends to earn 50 coins!</p>
-        <input type="text" id="referLink" value="https://taskearn.com/ref?user=987654" readonly>
-        <button onclick="copyReferral()">Copy Link</button>
-    </div>
-</div>
+    <script>
+        // App State
+        let isSignUp = false;
+        let coins = parseInt(localStorage.getItem('taskEarnCoins')) || 100; // Welcome 100 bonus
+        let loggedInUser = localStorage.getItem('taskEarnUser') || null;
 
-<!-- Help Modal -->
-<div id="helpModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal('helpModal')">&times;</span>
-        <h2>Helpline Support</h2>
-        <p>If you have any issues, describe them below:</p>
-        <textarea style="width: 90%; height: 80px; padding: 10px;" placeholder="Write your problem here..."></textarea>
-        <button onclick="alert('Message sent to support team! We will reply via email.'); closeModal('helpModal');">Send Message</button>
-    </div>
-</div>
+        // Elements
+        const authSection = document.getElementById('authSection');
+        const dashboardSection = document.getElementById('dashboardSection');
+        const userInfo = document.getElementById('userInfo');
+        const authForm = document.getElementById('authForm');
+        const authTitle = document.getElementById('authTitle');
+        const authSubmitBtn = document.getElementById('authSubmitBtn');
+        const toggleAuthText = document.getElementById('toggleAuthText');
+        const toggleAuthLink = document.getElementById('toggleAuthLink');
 
-<script>
-    // System Variables
-    let balance = parseInt(localStorage.getItem('taskEarnBalance')) || 0;
-    document.getElementById('balance').innerText = balance;
-
-    function addCoins(amount, message) {
-        balance += amount;
-        localStorage.setItem('taskEarnBalance', balance);
-        document.getElementById('balance').innerText = balance;
-        alert(message + "\nYou earned " + amount + " coins!");
-    }
-
-    function openModal(id) { document.getElementById(id).style.display = "block"; }
-    function closeModal(id) { document.getElementById(id).style.display = "none"; }
-
-    // 1. Daily Check-in
-    function dailyCheckIn() {
-        let lastCheckIn = localStorage.getItem('lastCheckIn');
-        let now = new Date().getTime();
-        if (lastCheckIn && (now - lastCheckIn) < 86400000) {
-            alert("You already claimed your daily bonus! Come back tomorrow.");
-        } else {
-            localStorage.setItem('lastCheckIn', now);
-            addCoins(20, "Daily Check-in Successful!");
-        }
-    }
-
-    // 2. Sponsor Link (Timer logic)
-    function visitSponsor() {
-        let btn = document.getElementById('sponsorBtn');
-        btn.innerText = "Please wait 15 seconds...";
-        btn.disabled = true;
-        window.open('https://google.com', '_blank'); // Fake sponsor link
-        setTimeout(() => {
-            btn.innerText = "Go to Website";
-            btn.disabled = false;
-            closeModal('sponsorModal');
-            addCoins(10, "Sponsor Visit Complete!");
-        }, 15000);
-    }
-
-    // 3. Math Quiz (Harder)
-    let mathAns = 0;
-    function openMathQuiz() {
-        let num1 = Math.floor(Math.random() * 50) + 15;
-        let num2 = Math.floor(Math.random() * 20) + 5;
-        let ops = ['+', '-', '*'];
-        let op = ops[Math.floor(Math.random() * ops.length)];
-        
-        if(op === '+') mathAns = num1 + num2;
-        else if(op === '-') mathAns = num1 - num2;
-        else if(op === '*') mathAns = num1 * num2;
-
-        document.getElementById('mathQuestion').innerText = `${num1} ${op} ${num2} = ?`;
-        document.getElementById('mathAnswer').value = '';
-        openModal('mathModal');
-    }
-    function checkMath() {
-        let userAns = parseInt(document.getElementById('mathAnswer').value);
-        if (userAns === mathAns) {
-            closeModal('mathModal');
-            addCoins(15, "Correct Answer!");
-        } else {
-            alert("Wrong Answer! Try again.");
-        }
-    }
-
-    // 4. Scratch Card (Random logic)
-    function openScratchCard() {
-        let area = document.getElementById('scratch-area');
-        area.className = '';
-        area.innerText = "Click to Scratch!";
-        openModal('scratchModal');
-    }
-    function scratch() {
-        let area = document.getElementById('scratch-area');
-        if (!area.classList.contains('scratched')) {
-            let winAmount = Math.floor(Math.random() * 30); // 0 to 29 coins
-            area.classList.add('scratched');
-            if (winAmount > 0) {
-                area.innerText = `You won ${winAmount}!`;
-                setTimeout(() => { closeModal('scratchModal'); addCoins(winAmount, "Scratched successfully!"); }, 1000);
+        // Initialize App
+        window.onload = function() {
+            if (loggedInUser) {
+                showDashboard();
             } else {
-                area.innerText = `Better luck next time`;
-                setTimeout(() => { closeModal('scratchModal'); alert("Oops, empty card!"); }, 1000);
+                showAuth();
+            }
+            updateBalance();
+        };
+
+        // Auth Mode Toggle
+        toggleAuthLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            isSignUp = !isSignUp;
+            if (isSignUp) {
+                authTitle.innerText = "Create New TaskEarn Account";
+                authSubmitBtn.innerText = "Sign Up";
+                toggleAuthText.innerText = "Already have an account?";
+                toggleAuthLink.innerText = "Login";
+            } else {
+                authTitle.innerText = "Login to TaskEarn";
+                authSubmitBtn.innerText = "Login";
+                toggleAuthText.innerText = "Don't have an account?";
+                toggleAuthLink.innerText = "Sign Up";
+            }
+        });
+
+        // Auth Submit
+        authForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('authEmail').value;
+            if (email) {
+                loggedInUser = email;
+                localStorage.setItem('taskEarnUser', loggedInUser);
+                showDashboard();
+                alert(isSignUp ? "Account created successfully! You received 100 welcome coins." : "Welcome back!");
+            }
+        });
+
+        function showDashboard() {
+            authSection.classList.add('hidden');
+            dashboardSection.classList.remove('hidden');
+            userInfo.classList.remove('hidden');
+            updateBalance();
+        }
+
+        function showAuth() {
+            authSection.classList.remove('hidden');
+            dashboardSection.classList.add('hidden');
+            userInfo.classList.add('hidden');
+        }
+
+        function logout() {
+            localStorage.removeItem('taskEarnUser');
+            loggedInUser = null;
+            showAuth();
+        }
+
+        function updateBalance() {
+            document.getElementById('coinBalance').innerText = coins;
+            document.getElementById('rupeeBalance').innerText = (coins / 100).toFixed(2);
+            localStorage.setItem('taskEarnCoins', coins);
+        }
+
+        // Tab Switcher
+        function switchTab(tabId) {
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.add('hidden'));
+
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(tabId).classList.remove('hidden');
+            event.currentTarget.classList.add('active');
+        }
+
+        // Task Implementations
+        function addCoins(amount, taskName) {
+            coins += amount;
+            updateBalance();
+            alert(`🎉 Success! You earned ${amount} coins from ${taskName}.`);
+        }
+
+        function completeTask(key, amount) {
+            const today = new Date().toDateString();
+            const lastClaim = localStorage.getItem('last_' + key);
+
+            if (lastClaim === today) {
+                alert("⏰ You have already completed this task today. Try again tomorrow!");
+            } else {
+                localStorage.setItem('last_' + key, today);
+                addCoins(amount, "Daily Check-in");
             }
         }
-    }
 
-    // 5. Hard Captcha
-    let currentCaptcha = "";
-    function generateCaptcha() {
-        let chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        currentCaptcha = "";
-        for (let i = 0; i < 6; i++) {
-            currentCaptcha += chars[Math.floor(Math.random() * chars.length)];
-        }
-        document.getElementById('captchaText').innerText = currentCaptcha;
-    }
-    function openCaptcha() {
-        generateCaptcha();
-        document.getElementById('captchaInput').value = '';
-        openModal('captchaModal');
-    }
-    function checkCaptcha() {
-        let userVal = document.getElementById('captchaInput').value;
-        if (userVal === currentCaptcha) {
-            closeModal('captchaModal');
-            addCoins(10, "Captcha Solved!");
-        } else {
-            alert("Incorrect Captcha! It is case-sensitive.");
-            generateCaptcha();
-        }
-    }
-
-    // 6. Survey
-    function openSurvey() {
-        document.getElementById('q1').selectedIndex = 0;
-        document.getElementById('q2').selectedIndex = 0;
-        openModal('surveyModal');
-    }
-    function submitSurvey() {
-        closeModal('surveyModal');
-        addCoins(25, "Thank you for your detailed feedback!");
-    }
-
-    // 7. Spin Wheel (1 Hour Cooldown & Animation)
-    function openSpinWheel() {
-        let lastSpin = localStorage.getItem('lastSpinTime');
-        let now = new Date().getTime();
-        let btn = document.getElementById('spinBtn');
-        let timerText = document.getElementById('spinTimer');
-        
-        if (lastSpin && (now - lastSpin) < 3600000) {
-            let leftMinutes = Math.ceil((3600000 - (now - lastSpin)) / 60000);
-            timerText.innerText = `Next spin available in ${leftMinutes} minutes.`;
-            btn.disabled = true;
-        } else {
-            timerText.innerText = "";
-            btn.disabled = false;
-        }
-        document.getElementById('wheel').style.transform = `rotate(0deg)`;
-        openModal('spinModal');
-    }
-    function spinWheel() {
-        document.getElementById('spinBtn').disabled = true;
-        let wheel = document.getElementById('wheel');
-        let randomDegree = Math.floor(Math.random() * 360) + 3600; // Spin multiple times
-        wheel.style.transform = `rotate(${randomDegree}deg)`;
-        
-        setTimeout(() => {
-            localStorage.setItem('lastSpinTime', new Date().getTime());
-            closeModal('spinModal');
-            let winAmount = Math.floor(Math.random() * 20) + 5;
-            addCoins(winAmount, "Wheel stopped! You won points.");
-        }, 3000);
-    }
-
-    // 8. Social Tasks (YouTube/Telegram with Timer)
-    function openSocialModal(platform, url, timeRequired) {
-        document.getElementById('socialTitle').innerText = platform + " Task";
-        document.getElementById('socialDesc').innerText = `Click the button below, it will open ${platform}. You must wait there for ${timeRequired} seconds to get rewarded.`;
-        
-        let btn = document.getElementById('socialBtn');
-        btn.onclick = function() {
-            btn.innerText = `Waiting ${timeRequired}s...`;
-            btn.disabled = true;
+        function openLinkTask(url, reward) {
             window.open(url, '_blank');
-            
+            alert(`Opening link... Stay on the site for 15 seconds. Press OK to collect your ${reward} coins!`);
             setTimeout(() => {
-                btn.innerText = "Go & Complete Task";
-                btn.disabled = false;
-                closeModal('socialModal');
-                addCoins(15, `${platform} task completed!`);
-            }, timeRequired * 1000);
-        };
-        openModal('socialModal');
-    }
+                addCoins(reward, "Visit Link Task");
+            }, 3000);
+        }
 
-    // 9. Referral System
-    function openReferral() {
-        openModal('referModal');
-    }
-    function copyReferral() {
-        let copyText = document.getElementById("referLink");
-        copyText.select();
-        copyText.setSelectionRange(0, 99999); /* For mobile devices */
-        navigator.clipboard.writeText(copyText.value);
-        alert("Referral Link Copied: " + copyText.value);
-    }
-</script>
+        function mathQuizTask() {
+            const a = Math.floor(Math.random() * 20) + 1;
+            const b = Math.floor(Math.random() * 20) + 1;
+            const ans = prompt(`Solve this Math Problem: What is ${a} + ${b}?`);
+            if (parseInt(ans) === (a + b)) {
+                addCoins(20, "Math Quiz");
+            } else {
+                alert("❌ Wrong answer! Try again.");
+            }
+        }
 
+        function surveyTask() {
+            const ans = prompt("Survey Question: Which feature do you like most in TaskEarn? (e.g. Spin, Easy Tasks, Quick Withdraw)");
+            if (ans) {
+                addCoins(100, "Survey Task");
+            }
+        }
+
+        function scratchTask() {
+            const rewards = [10, 25, 50, 75, 100];
+            const won = rewards[Math.floor(Math.random() * rewards.length)];
+            alert(`✨ You scratched the card and won ${won} Coins!`);
+            addCoins(won, "Scratch Card");
+        }
+
+        function captchaTask() {
+            const captcha = Math.floor(1000 + Math.random() * 9000);
+            const input = prompt(`Enter this Captcha code: ${captcha}`);
+            if (input === String(captcha)) {
+                addCoins(25, "Captcha Task");
+            } else {
+                alert("❌ Incorrect captcha entered.");
+            }
+        }
+
+        function referTask() {
+            navigator.clipboard.writeText(window.location.href);
+            alert("🔗 Referral link copied to clipboard! Share with friends to earn +200 coins per signup.");
+            addCoins(50, "Sharing Link");
+        }
+
+        // Spin Wheel
+        let spinning = false;
+        function spinWheel() {
+            if (spinning) return;
+            spinning = true;
+
+            const wheel = document.getElementById('wheel');
+            const randomDegrees = Math.floor(Math.random() * 360) + 1440; // 4 full rotations
+            wheel.style.transform = `rotate(${randomDegrees}deg)`;
+
+            setTimeout(() => {
+                const rewards = [20, 50, 10, 100, 30, 0, 40];
+                const prize = rewards[Math.floor(Math.random() * rewards.length)];
+                if (prize > 0) {
+                    addCoins(prize, "Spin Wheel");
+                } else {
+                    alert("😅 Better luck next time!");
+                }
+                wheel.style.transform = 'rotate(0deg)';
+                spinning = false;
+            }, 3200);
+        }
+
+        // Withdrawal
+        function processWithdrawal() {
+            const amount = parseInt(document.getElementById('withdrawAmount').value);
+            const details = document.getElementById('paymentDetails').value;
+            const method = document.getElementById('paymentMethod').value;
+
+            if (!details) {
+                alert("Please enter your UPI ID or Payment Phone Number!");
+                return;
+            }
+
+            if (coins < amount) {
+                alert(`Insufficient Coins! You need at least ${amount} coins to withdraw ₹${amount/100}.`);
+                return;
+            }
+
+            coins -= amount;
+            updateBalance();
+            alert(`✅ Withdrawal Request Submitted Successfully!\nAmount: ₹${amount/100}\nMethod: ${method}\nDetails: ${details}\nStatus: Pending (Processing within 24 hours)`);
+        }
+    </script>
 </body>
 </html>
