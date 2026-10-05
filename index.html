@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TaskEarn - Complete Earning Platform
     </title>
-    <meta name="google-site-verification" content="leAqVTCidblYLhMmO1QOsSc4AqvpMukslxkksgHYRLE" />
     <script data-cfasync="false" src="https://abscloud.org/1/4b5052c3fa04dd31bc06ee0589554d00"></script>
 <script data-cfasync="false" src="https://bauval.org/14/c3997dc24a36599fc285d153ee28c70a"></script>
     <style>
@@ -297,23 +296,44 @@
                             <div class="task-title">5. Quick Feedback Survey</div>
                             <div class="task-reward">+100 Coins</div>
                             <button class="btn" onclick="surveyTask()">Start Survey</button>
-                        <!-- Referral Section -->
-<div class="task-box">
-    <h3>Refer & Earn</h3>
-    <p>Apne doston ko invite karein aur coins kamayein!</p>
-    <input type="text" id="referralLink" value="https://taskearn.com/?ref=USER123" readonly style="padding: 5px; width: 250px;">
-    <button onclick="copyReferralLink()">Copy Link</button>
-</div>
+                        </div>
 
-<!-- Task Buttons -->
-<div class="task-buttons" style="margin-top: 20px;">
-    <button onclick="dailyCheckIn()">Daily Check-in</button>
-    <button onclick="spinWheel()">Spin Wheel</button>
-    <button onclick="openScratchCard()">Scratch Card</button>
-    <button onclick="generateMathQuiz()">Math Quiz</button>
-    <button onclick="captchaTask()">Solve Captcha</button>
-    <button onclick="doYouTubeTask()">YouTube Video Task</button>
-</div>
+                        <!-- Task 6 -->
+                        <div class="task-card">
+                            <div class="task-title">6. Scratch Card</div>
+                            <div class="task-reward">Up to +80 Coins</div>
+                            <button class="btn" onclick="scratchTask()">Scratch Now</button>
+                        </div>
+
+                        <!-- Task 7 -->
+                        <div class="task-card">
+                            <div class="task-title">7. Solve Captcha</div>
+                            <div class="task-reward">+25 Coins</div>
+                            <button class="btn" onclick="captchaTask()">Solve Captcha</button>
+                        </div>
+
+                        <!-- Task 8 -->
+                        <div class="task-card">
+                            <div class="task-title">8. Subscribe YouTube</div>
+                            <div class="task-reward">+60 Coins</div>
+                            <button class="btn btn-outline" onclick="openLinkTask('https://youtube.com', 60)">Subscribe & Earn</button>
+                        </div>
+
+                        <!-- Task 9 -->
+                        <div class="task-card">
+                            <div class="task-title">9. Join Telegram Channel</div>
+                            <div class="task-reward">+50 Coins</div>
+                            <button class="btn btn-outline" onclick="openLinkTask('https://telegram.org', 50)">Join Channel</button>
+                        </div>
+
+                        <!-- Task 10 -->
+                        <div class="task-card">
+                            <div class="task-title">10. Refer a Friend</div>
+                            <div class="task-reward">+200 Coins</div>
+                            <button class="btn" onclick="referTask()">Copy Referral Link</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- TAB 2: SPIN WHEEL -->
