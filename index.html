@@ -105,10 +105,17 @@
             width: 100%;
             font-size: 15px;
             text-align: center;
+            display: inline-block;
+            text-decoration: none;
         }
 
         .btn:hover {
             background-color: #27ae60;
+        }
+
+        .btn:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
         }
 
         .btn-outline {
@@ -120,6 +127,22 @@
         .btn-outline:hover {
             background: #2ecc71;
             color: white;
+        }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+        }
+        .btn-whatsapp:hover {
+            background-color: #1eb853;
+        }
+
+        .btn-telegram {
+            background-color: #0088cc;
+            color: white;
+        }
+        .btn-telegram:hover {
+            background-color: #0077b3;
         }
 
         .btn-danger {
@@ -207,27 +230,69 @@
             margin-bottom: 12px;
         }
 
-        /* Spin Wheel */
-        .wheel-container {
-            text-align: center;
-            padding: 20px 0;
+        /* --- SPIN WHEEL STYLING --- */
+        .wheel-wrapper {
+            position: relative;
+            width: 260px;
+            height: 260px;
+            margin: 20px auto;
         }
 
-        .wheel {
-            width: 200px;
-            height: 200px;
+        .wheel-pointer {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 14px solid transparent;
+            border-right: 14px solid transparent;
+            border-top: 24px solid #e74c3c;
+            z-index: 10;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+
+        .wheel-canvas-container {
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
-            border: 8px solid #2ecc71;
-            margin: 0 auto 20px auto;
+            overflow: hidden;
+            border: 6px solid #2ecc71;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+            transition: transform 4s cubic-bezier(0.15, 0.85, 0.35, 1.02);
+        }
+
+        #wheelCanvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        .timer-badge {
+            background: #fff3cd;
+            color: #856404;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            display: inline-block;
+            margin-top: 10px;
+            border: 1px solid #ffeeba;
+        }
+
+        /* Leaderboard Styling */
+        .leader-item {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 24px;
+            justify-content: space-between;
+            padding: 12px 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .leader-item:nth-child(1) { background: #fffdf0; font-weight: bold; }
+        .leader-item:nth-child(2) { background: #f8f9fa; }
+        .leader-rank {
+            width: 30px;
             font-weight: bold;
-            background: conic-gradient(#f39c12 0deg 90deg, #e74c3c 90deg 180deg, #3498db 180deg 270deg, #2ecc71 270deg 360deg);
-            color: white;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            transition: transform 3s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+            font-size: 16px;
         }
 
         /* Transaction History Table */
@@ -285,6 +350,28 @@
             font-size: 12px;
         }
 
+        /* Live Activity Ticker */
+        .live-ticker {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 8px 15px;
+            font-size: 13px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: #2ecc71;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #2ecc71;
+        }
+
         /* Profile Details */
         .profile-header {
             display: flex;
@@ -318,6 +405,30 @@
             color: #777;
             background: #fff;
             border-top: 1px solid #eee;
+        }
+
+        /* Captcha Modal Box */
+        .captcha-box {
+            background: #eef2f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            text-align: center;
+        }
+        .captcha-code {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 5px;
+            background: #34495e;
+            color: #f1c40f;
+            padding: 8px 15px;
+            border-radius: 6px;
+            user-select: none;
+            display: inline-block;
+            margin-bottom: 10px;
+            background-image: linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.1) 75%, transparent 75%, transparent);
+            background-size: 20px 20px;
         }
     </style>
 </head>
@@ -361,11 +472,18 @@
         <!-- MAIN DASHBOARD -->
         <div id="dashboardSection" class="hidden">
 
+            <!-- Live Ticker Bar -->
+            <div class="live-ticker">
+                <div class="live-dot"></div>
+                <span id="tickerText">🔥 Rahul M. won 100 Coins from Spin Wheel!</span>
+            </div>
+
             <!-- Navigation Tabs -->
             <div class="nav-tabs">
                 <button class="tab-btn active" onclick="switchTab('tasksTab')">🎯 Daily Tasks</button>
                 <button class="tab-btn" onclick="switchTab('videoTab')">📺 Watch Videos</button>
                 <button class="tab-btn" onclick="switchTab('spinTab')">🎰 Spin Wheel</button>
+                <button class="tab-btn" onclick="switchTab('leaderboardTab')">🏆 Leaderboard</button>
                 <button class="tab-btn" onclick="switchTab('withdrawTab')">💸 Withdraw</button>
                 <button class="tab-btn" onclick="switchTab('historyTab')">📜 History</button>
                 <button class="tab-btn" onclick="switchTab('profileTab')">👤 Profile</button>
@@ -375,7 +493,6 @@
 
             <!-- AD CONTAINER TOP -->
             <div class="ad-banner-box" id="topAdBanner">
-                <!-- AdSense / Network Code Placement Here -->
                 <span>📢 Advertisement / Sponsored Partner Ads</span>
             </div>
 
@@ -397,14 +514,14 @@
                         <div class="task-card">
                             <div class="task-title">2. Visit Sponsor Link 1</div>
                             <div class="task-reward">+30 Coins</div>
-                            <button class="btn btn-outline" onclick="openLinkTask('https://example.com', 30)">Open & View (15s)</button>
+                            <button class="btn btn-outline" onclick="openLinkTask('https://google.com', 30)">Open & View (15s)</button>
                         </div>
 
                         <!-- Task 3 -->
                         <div class="task-card">
                             <div class="task-title">3. Visit Sponsor Link 2</div>
                             <div class="task-reward">+40 Coins</div>
-                            <button class="btn btn-outline" onclick="openLinkTask('https://example.com', 40)">Open & View (15s)</button>
+                            <button class="btn btn-outline" onclick="openLinkTask('https://bing.com', 40)">Open & View (15s)</button>
                         </div>
 
                         <!-- Task 4 -->
@@ -482,15 +599,39 @@
 
             <!-- TAB 3: SPIN WHEEL -->
             <div id="spinTab" class="tab-content hidden">
-                <div class="card wheel-container">
-                    <h3>Lucky Spin & Win</h3>
-                    <p style="font-size: 14px; color: #666; margin-bottom: 20px;">Spin to win free coins every hour!</p>
-                    <div class="wheel" id="wheel">SPIN</div>
-                    <button class="btn" id="spinBtn" onclick="spinWheel()" style="max-width: 250px; margin: 0 auto;">Spin Now</button>
+                <div class="card" style="text-align: center;">
+                    <h3>🎰 Lucky Spin & Win</h3>
+                    <p style="font-size: 14px; color: #666; margin-bottom: 10px;">Spin the wheel to win free coins every hour!</p>
+
+                    <div class="wheel-wrapper">
+                        <div class="wheel-pointer"></div>
+                        <div class="wheel-canvas-container" id="wheelContainer">
+                            <canvas id="wheelCanvas" width="300" height="300"></canvas>
+                        </div>
+                    </div>
+
+                    <div id="spinTimerBadge" class="timer-badge hidden">
+                        ⏳ Next spin in: <span id="spinCountdown">60:00</span>
+                    </div>
+
+                    <div style="margin-top: 15px;">
+                        <button class="btn" id="spinBtn" onclick="spinWheel()" style="max-width: 250px; margin: 0 auto;">Spin Now</button>
+                    </div>
                 </div>
             </div>
 
-            <!-- TAB 4: WITHDRAW -->
+            <!-- TAB 4: LEADERBOARD -->
+            <div id="leaderboardTab" class="tab-content hidden">
+                <div class="card">
+                    <h3>🏆 Top Earners Leaderboard</h3>
+                    <p style="font-size: 13px; color: #666; margin-bottom: 15px;">Live rankings of top active users this week.</p>
+                    <div id="leaderboardList">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 5: WITHDRAW -->
             <div id="withdrawTab" class="tab-content hidden">
                 <div class="card">
                     <h3>Instant Withdrawal</h3>
@@ -524,39 +665,45 @@
                 </div>
             </div>
 
-            <!-- TAB 5: TRANSACTION HISTORY -->
+            <!-- TAB 6: TRANSACTION HISTORY -->
             <div id="historyTab" class="tab-content hidden">
                 <div class="card">
                     <h3>📜 Transaction & Earning History</h3>
                     <p style="font-size: 13px; color: #666; margin-bottom: 10px;">Track all your earned coins and withdrawal requests.</p>
                     <div class="history-list" id="historyList">
-                        <!-- History items will be dynamically inserted here -->
+                        <!-- History items dynamic insertion -->
                     </div>
                 </div>
             </div>
 
-            <!-- TAB 6: PROFILE SECTION -->
+            <!-- TAB 7: PROFILE SECTION -->
             <div id="profileTab" class="tab-content hidden">
                 <div class="card">
                     <div class="profile-header">
                         <div class="profile-avatar" id="profileAvatarLetter">U</div>
                         <div>
                             <h3 id="profileEmailDisplay">user@example.com</h3>
-                            <p style="font-size: 13px; color: #666;">Verified Member</p>
+                            <p style="font-size: 13px; color: #666;">Verified Active Member</p>
                         </div>
                     </div>
                     
                     <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
                         <p style="margin-bottom: 8px;"><strong>🪙 Total Coins Balance:</strong> <span id="profileCoins">0</span> Coins</p>
                         <p style="margin-bottom: 8px;"><strong>💵 Rupee Value:</strong> ₹<span id="profileRupees">0.00</span></p>
-                        <p><strong>🔗 My Referral Code:</strong> <span id="referralCode">TASK100</span></p>
+                        <p style="margin-bottom: 12px;"><strong>🔗 Your Referral Link:</strong></p>
+                        <input type="text" id="refLinkInput" readonly style="width:100%; padding:8px; border:1px solid #ccc; border-radius:6px; background:#fff; font-size:13px; margin-bottom:10px;">
+                        
+                        <div style="display:flex; gap:10px;">
+                            <button class="btn btn-whatsapp" onclick="shareRefWhatsApp()">Share WhatsApp</button>
+                            <button class="btn btn-telegram" onclick="shareRefTelegram()">Share Telegram</button>
+                        </div>
                     </div>
 
                     <button class="btn btn-danger" onclick="logout()">Logout Account</button>
                 </div>
             </div>
 
-            <!-- TAB 7: SUPPORT -->
+            <!-- TAB 8: SUPPORT -->
             <div id="supportTab" class="tab-content hidden">
                 <div class="card">
                     <h3>Trusted Support & Helpline</h3>
@@ -578,9 +725,21 @@
     </div>
 
     <script>
+        // Wheel Rewards & Config
+        const wheelSectors = [
+            { label: "10 Coins", reward: 10, color: "#f39c12" },
+            { label: "50 Coins", reward: 50, color: "#e74c3c" },
+            { label: "Better Luck", reward: 0, color: "#95a5a6" },
+            { label: "100 Coins", reward: 100, color: "#3498db" },
+            { label: "20 Coins", reward: 20, color: "#9b59b6" },
+            { label: "5 Coins", reward: 5, color: "#1abc9c" },
+            { label: "200 Coins", reward: 200, color: "#2ecc71" },
+            { label: "Try Again", reward: 0, color: "#e67e22" }
+        ];
+
         // App State
         let isSignUp = false;
-        let coins = parseInt(localStorage.getItem('taskEarnCoins')) || 100; // Welcome 100 bonus
+        let coins = parseInt(localStorage.getItem('taskEarnCoins')) || 100;
         let loggedInUser = localStorage.getItem('taskEarnUser') || null;
         let history = JSON.parse(localStorage.getItem('taskEarnHistory')) || [
             { title: 'Welcome Bonus', amount: 100, type: 'credit', date: new Date().toLocaleDateString() }
@@ -597,7 +756,7 @@
         const toggleAuthText = document.getElementById('toggleAuthText');
         const toggleAuthLink = document.getElementById('toggleAuthLink');
 
-        // Initialize App
+        // Initialize
         window.onload = function() {
             if (loggedInUser) {
                 showDashboard();
@@ -606,7 +765,43 @@
             }
             updateBalance();
             renderHistory();
+            drawWheel();
+            checkSpinCooldown();
+            renderLeaderboard();
+            startLiveTicker();
         };
+
+        // Draw Canvas Wheel
+        function drawWheel() {
+            const canvas = document.getElementById('wheelCanvas');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const numSectors = wheelSectors.length;
+            const arc = (2 * Math.PI) / numSectors;
+            const radius = canvas.width / 2;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < numSectors; i++) {
+                const angle = i * arc;
+                ctx.beginPath();
+                ctx.fillStyle = wheelSectors[i].color;
+                ctx.moveTo(radius, radius);
+                ctx.arc(radius, radius, radius, angle, angle + arc);
+                ctx.lineTo(radius, radius);
+                ctx.fill();
+
+                // Text
+                ctx.save();
+                ctx.translate(radius, radius);
+                ctx.rotate(angle + arc / 2);
+                ctx.textAlign = "right";
+                ctx.fillStyle = "#ffffff";
+                ctx.font = "bold 13px Segoe UI";
+                ctx.fillText(wheelSectors[i].label, radius - 15, 5);
+                ctx.restore();
+            }
+        }
 
         // Auth Mode Toggle
         toggleAuthLink.addEventListener('click', function(e) {
@@ -664,7 +859,7 @@
             document.getElementById('rupeeBalance').innerText = (coins / 100).toFixed(2);
             localStorage.setItem('taskEarnCoins', coins);
             
-            // Profile update
+            // Profile
             document.getElementById('profileCoins').innerText = coins;
             document.getElementById('profileRupees').innerText = (coins / 100).toFixed(2);
         }
@@ -673,6 +868,10 @@
             if(loggedInUser) {
                 document.getElementById('profileEmailDisplay').innerText = loggedInUser;
                 document.getElementById('profileAvatarLetter').innerText = loggedInUser.charAt(0).toUpperCase();
+                
+                const refCode = "REF" + btoa(loggedInUser).substring(0, 6).toUpperCase();
+                const refUrl = window.location.origin + window.location.pathname + "?ref=" + refCode;
+                document.getElementById('refLinkInput').value = refUrl;
             }
         }
 
@@ -686,7 +885,6 @@
 
             document.getElementById(tabId).classList.remove('hidden');
             
-            // Highlight active button if exists
             buttons.forEach(btn => {
                 if(btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(tabId)) {
                     btn.classList.add('active');
@@ -694,12 +892,9 @@
             });
         }
 
-        // Add Coins & History Tracking
         function addCoins(amount, taskName) {
             coins += amount;
             updateBalance();
-            
-            // Add to transaction history
             addTransaction(taskName, amount, 'credit');
             alert(`🎉 Success! You earned ${amount} coins from ${taskName}.`);
         }
@@ -708,7 +903,7 @@
             const tx = {
                 title: title,
                 amount: amount,
-                type: type, // 'credit' or 'debit'
+                type: type,
                 date: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
             };
             history.unshift(tx);
@@ -738,13 +933,13 @@
             `).join('');
         }
 
-        // Task Implementations
+        // --- TASKS IMPLEMENTATION ---
         function completeTask(key, amount) {
             const today = new Date().toDateString();
             const lastClaim = localStorage.getItem('last_' + key);
 
             if (lastClaim === today) {
-                alert("⏰ You have already completed this task today. Try again tomorrow!");
+                alert("⏰ You have already claimed this daily task today. Try again tomorrow!");
             } else {
                 localStorage.setItem('last_' + key, today);
                 addCoins(amount, "Daily Check-in");
@@ -753,84 +948,208 @@
 
         function openLinkTask(url, reward) {
             window.open(url, '_blank');
-            alert(`Opening link... Stay on the site for 15 seconds. Press OK to collect your ${reward} coins!`);
+            alert(`Opening link... Please stay on the page for 15 seconds. Click OK when done to get +${reward} coins!`);
             setTimeout(() => {
-                addCoins(reward, "Visit Link Task");
+                addCoins(reward, "Sponsor Link Task");
             }, 3000);
         }
 
         function watchVideoTask(title, reward) {
-            alert(`▶️ Watching sponsored video... Please wait 15 seconds.`);
+            alert(`▶️ Watching sponsored video ad... Please wait 15 seconds.`);
             setTimeout(() => {
                 addCoins(reward, title);
             }, 2000);
         }
 
         function mathQuizTask() {
-            const a = Math.floor(Math.random() * 20) + 1;
-            const b = Math.floor(Math.random() * 20) + 1;
-            const ans = prompt(`Solve this Math Problem: What is ${a} + ${b}?`);
+            const a = Math.floor(Math.random() * 25) + 5;
+            const b = Math.floor(Math.random() * 25) + 5;
+            const ans = prompt(`🔢 Math Quiz Challenge:\nCalculate: ${a} + ${b} = ?`);
             if (parseInt(ans) === (a + b)) {
                 addCoins(20, "Math Quiz");
             } else {
-                alert("❌ Wrong answer! Try again.");
+                alert("❌ Wrong answer! Please try again.");
             }
         }
 
         function surveyTask() {
-            const ans = prompt("Survey Question: Which feature do you like most in TaskEarn? (e.g. Spin, Easy Tasks, Quick Withdraw)");
+            const ans = prompt("📋 Feedback Survey:\nWhich feature do you use most on TaskEarn? (e.g. Spin Wheel, Daily Tasks, Video Ads)");
             if (ans) {
-                addCoins(100, "Survey Task");
+                addCoins(100, "Survey Completed");
             }
         }
 
         function scratchTask() {
-            const rewards = [10, 25, 50, 75, 100];
+            const rewards = [15, 30, 50, 75, 100];
             const won = rewards[Math.floor(Math.random() * rewards.length)];
-            alert(`✨ You scratched the card and won ${won} Coins!`);
+            alert(`🎫 Scratch Card Winner!\nYou revealed: +${won} Coins!`);
             addCoins(won, "Scratch Card");
         }
 
+        // HARD CAPTCHA TASK WITH "NOT A ROBOT" CHECK
         function captchaTask() {
-            const captcha = Math.floor(1000 + Math.random() * 9000);
-            const input = prompt(`Enter this Captcha code: ${captcha}`);
-            if (input === String(captcha)) {
+            const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+            let code = "";
+            for (let i = 0; i < 5; i++) {
+                code += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+
+            const isHuman = confirm("🤖 Verification Check:\nClick OK to confirm 'I am not a robot'.");
+            if (!isHuman) return;
+
+            const userInput = prompt(`🔐 Security Captcha Verification:\n\nPlease enter the exact case-sensitive code shown below:\n\n👉  ${code}  👈`);
+            if (userInput === code) {
                 addCoins(25, "Captcha Task");
             } else {
-                alert("❌ Incorrect captcha entered.");
+                alert("❌ Captcha code incorrect or mismatched. Please try again.");
             }
         }
 
         function referTask() {
-            navigator.clipboard.writeText(window.location.href);
-            alert("🔗 Referral link copied to clipboard! Share with friends to earn +200 coins per signup.");
-            addCoins(50, "Sharing Link");
+            const refInput = document.getElementById('refLinkInput');
+            navigator.clipboard.writeText(refInput.value);
+            alert("🔗 Referral link copied to clipboard!\nShare with friends to earn +200 coins for every new registration.");
+            addCoins(20, "Shared Referral Link");
         }
 
-        // Spin Wheel
+        function shareRefWhatsApp() {
+            const url = document.getElementById('refLinkInput').value;
+            window.open(`https://api.whatsapp.com/send?text=Join%20TaskEarn%20now%20and%20earn%20free%20money!%20Sign%20up%20using%20my%20link:%20${encodeURIComponent(url)}`, '_blank');
+        }
+
+        function shareRefTelegram() {
+            const url = document.getElementById('refLinkInput').value;
+            window.open(`https://t.me/share/url?url=${encodeURIComponent(url)}&text=Earn%20daily%20coins%20and%20withdraw%20real%20cash%20on%20TaskEarn!`, '_blank');
+        }
+
+        // --- SPIN WHEEL WITH 1 HOUR TIMER ---
         let spinning = false;
+        let currentRotation = 0;
+
         function spinWheel() {
             if (spinning) return;
-            spinning = true;
 
-            const wheel = document.getElementById('wheel');
-            const randomDegrees = Math.floor(Math.random() * 360) + 1440; // 4 full rotations
-            wheel.style.transform = `rotate(${randomDegrees}deg)`;
+            const lastSpin = localStorage.getItem('lastSpinTime');
+            const now = new Date().getTime();
+            if (lastSpin && (now - lastSpin) < 3600000) {
+                alert("⏳ You can spin the wheel once every 1 hour! Please wait for the timer.");
+                return;
+            }
+
+            spinning = true;
+            document.getElementById('spinBtn').disabled = true;
+
+            const selectedIndex = Math.floor(Math.random() * wheelSectors.length);
+            const numSectors = wheelSectors.length;
+            const sectorDegree = 360 / numSectors;
+
+            // Target rotation to align pointer with sector
+            const extraRounds = 5 * 360;
+            const targetDegree = extraRounds + (360 - (selectedIndex * sectorDegree) - (sectorDegree / 2));
+            currentRotation += targetDegree;
+
+            const wheelContainer = document.getElementById('wheelContainer');
+            wheelContainer.style.transform = `rotate(${currentRotation}deg)`;
 
             setTimeout(() => {
-                const rewards = [20, 50, 10, 100, 30, 0, 40];
-                const prize = rewards[Math.floor(Math.random() * rewards.length)];
-                if (prize > 0) {
-                    addCoins(prize, "Spin Wheel");
+                const wonItem = wheelSectors[selectedIndex];
+                if (wonItem.reward > 0) {
+                    addCoins(wonItem.reward, `Spin Wheel (${wonItem.label})`);
                 } else {
-                    alert("😅 Better luck next time!");
+                    alert(`😅 ${wonItem.label}! Try again in 1 hour.`);
                 }
-                wheel.style.transform = 'rotate(0deg)';
+
+                localStorage.setItem('lastSpinTime', new Date().getTime());
                 spinning = false;
-            }, 3200);
+                checkSpinCooldown();
+            }, 4200);
         }
 
-        // Withdrawal
+        function checkSpinCooldown() {
+            const lastSpin = localStorage.getItem('lastSpinTime');
+            const spinBtn = document.getElementById('spinBtn');
+            const badge = document.getElementById('spinTimerBadge');
+            const countdownEl = document.getElementById('spinCountdown');
+
+            if (!lastSpin) {
+                spinBtn.disabled = false;
+                badge.classList.add('hidden');
+                return;
+            }
+
+            const updateTimer = () => {
+                const now = new Date().getTime();
+                const diff = 3600000 - (now - lastSpin);
+
+                if (diff <= 0) {
+                    spinBtn.disabled = false;
+                    badge.classList.add('hidden');
+                    clearInterval(window.spinTimerInterval);
+                } else {
+                    spinBtn.disabled = true;
+                    badge.classList.remove('hidden');
+                    const mins = Math.floor(diff / 60000);
+                    const secs = Math.floor((diff % 60000) / 1000);
+                    countdownEl.innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+                }
+            };
+
+            updateTimer();
+            clearInterval(window.spinTimerInterval);
+            window.spinTimerInterval = setInterval(updateTimer, 1000);
+        }
+
+        // --- LEADERBOARD ---
+        function renderLeaderboard() {
+            const list = document.getElementById('leaderboardList');
+            if (!list) return;
+
+            const dummyLeaders = [
+                { name: "Rahul Sharma", coins: 14500, avatar: "🥇" },
+                { name: "Priya Patel", coins: 11200, avatar: "🥈" },
+                { name: "Amit Kumar", coins: 9800, avatar: "🥉" },
+                { name: "Vikram Singh", coins: 8400, avatar: "4️⃣" },
+                { name: "Neha Verma", coins: 7100, avatar: "5️⃣" },
+                { name: "Suresh Gupta", coins: 6300, avatar: "6️⃣" }
+            ];
+
+            list.innerHTML = dummyLeaders.map((item, index) => `
+                <div class="leader-item">
+                    <div style="display:flex; align-items:center; gap:12px;">
+                        <span class="leader-rank">${item.avatar}</span>
+                        <div>
+                            <div style="font-size:14px; font-weight:600;">${item.name}</div>
+                            <div style="font-size:11px; color:#777;">Rank #${index + 1}</div>
+                        </div>
+                    </div>
+                    <div style="font-weight:bold; color:#27ae60;">
+                        🪙 ${item.coins} Coins
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // --- LIVE TICKER NOTIFICATIONS ---
+        function startLiveTicker() {
+            const tickerEl = document.getElementById('tickerText');
+            const activities = [
+                "🔥 Rahul M. won 100 Coins from Spin Wheel!",
+                "💸 Priya S. withdrew ₹50 via Paytm!",
+                "🎉 Amit K. completed Daily Task (+50 Coins)",
+                "📲 Vikram R. earned +200 Coins via Referral!",
+                "💸 Neha G. successfully withdrew ₹100 UPI!"
+            ];
+
+            let index = 0;
+            setInterval(() => {
+                index = (index + 1) % activities.length;
+                if (tickerEl) {
+                    tickerEl.innerText = activities[index];
+                }
+            }, 4000);
+        }
+
+        // --- WITHDRAWAL ---
         function processWithdrawal() {
             const amount = parseInt(document.getElementById('withdrawAmount').value);
             const details = document.getElementById('paymentDetails').value;
