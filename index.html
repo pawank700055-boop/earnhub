@@ -407,6 +407,17 @@
             border-top: 1px solid #eee;
         }
 
+        .footer a {
+            color: #2ecc71;
+            text-decoration: none;
+            margin: 0 8px;
+            font-weight: 600;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
         /* Captcha Modal Box */
         .captcha-box {
             background: #eef2f5;
@@ -722,6 +733,9 @@
 
     <div class="footer">
         &copy; 2026 TaskEarn. All rights reserved. Safe & Secure Earning Platform.
+        <br><br>
+        <a href="terms.html">Terms & Conditions</a> | 
+        <a href="privacy.html">Privacy Policy</a>
     </div>
 
     <script>
@@ -1027,149 +1041,4 @@
         let currentRotation = 0;
 
         function spinWheel() {
-            if (spinning) return;
-
-            const lastSpin = localStorage.getItem('lastSpinTime');
-            const now = new Date().getTime();
-            if (lastSpin && (now - lastSpin) < 3600000) {
-                alert("⏳ You can spin the wheel once every 1 hour! Please wait for the timer.");
-                return;
-            }
-
-            spinning = true;
-            document.getElementById('spinBtn').disabled = true;
-
-            const selectedIndex = Math.floor(Math.random() * wheelSectors.length);
-            const numSectors = wheelSectors.length;
-            const sectorDegree = 360 / numSectors;
-
-            // Target rotation to align pointer with sector
-            const extraRounds = 5 * 360;
-            const targetDegree = extraRounds + (360 - (selectedIndex * sectorDegree) - (sectorDegree / 2));
-            currentRotation += targetDegree;
-
-            const wheelContainer = document.getElementById('wheelContainer');
-            wheelContainer.style.transform = `rotate(${currentRotation}deg)`;
-
-            setTimeout(() => {
-                const wonItem = wheelSectors[selectedIndex];
-                if (wonItem.reward > 0) {
-                    addCoins(wonItem.reward, `Spin Wheel (${wonItem.label})`);
-                } else {
-                    alert(`😅 ${wonItem.label}! Try again in 1 hour.`);
-                }
-
-                localStorage.setItem('lastSpinTime', new Date().getTime());
-                spinning = false;
-                checkSpinCooldown();
-            }, 4200);
-        }
-
-        function checkSpinCooldown() {
-            const lastSpin = localStorage.getItem('lastSpinTime');
-            const spinBtn = document.getElementById('spinBtn');
-            const badge = document.getElementById('spinTimerBadge');
-            const countdownEl = document.getElementById('spinCountdown');
-
-            if (!lastSpin) {
-                spinBtn.disabled = false;
-                badge.classList.add('hidden');
-                return;
-            }
-
-            const updateTimer = () => {
-                const now = new Date().getTime();
-                const diff = 3600000 - (now - lastSpin);
-
-                if (diff <= 0) {
-                    spinBtn.disabled = false;
-                    badge.classList.add('hidden');
-                    clearInterval(window.spinTimerInterval);
-                } else {
-                    spinBtn.disabled = true;
-                    badge.classList.remove('hidden');
-                    const mins = Math.floor(diff / 60000);
-                    const secs = Math.floor((diff % 60000) / 1000);
-                    countdownEl.innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
-                }
-            };
-
-            updateTimer();
-            clearInterval(window.spinTimerInterval);
-            window.spinTimerInterval = setInterval(updateTimer, 1000);
-        }
-
-        // --- LEADERBOARD ---
-        function renderLeaderboard() {
-            const list = document.getElementById('leaderboardList');
-            if (!list) return;
-
-            const dummyLeaders = [
-                { name: "Rahul Sharma", coins: 14500, avatar: "🥇" },
-                { name: "Priya Patel", coins: 11200, avatar: "🥈" },
-                { name: "Amit Kumar", coins: 9800, avatar: "🥉" },
-                { name: "Vikram Singh", coins: 8400, avatar: "4️⃣" },
-                { name: "Neha Verma", coins: 7100, avatar: "5️⃣" },
-                { name: "Suresh Gupta", coins: 6300, avatar: "6️⃣" }
-            ];
-
-            list.innerHTML = dummyLeaders.map((item, index) => `
-                <div class="leader-item">
-                    <div style="display:flex; align-items:center; gap:12px;">
-                        <span class="leader-rank">${item.avatar}</span>
-                        <div>
-                            <div style="font-size:14px; font-weight:600;">${item.name}</div>
-                            <div style="font-size:11px; color:#777;">Rank #${index + 1}</div>
-                        </div>
-                    </div>
-                    <div style="font-weight:bold; color:#27ae60;">
-                        🪙 ${item.coins} Coins
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // --- LIVE TICKER NOTIFICATIONS ---
-        function startLiveTicker() {
-            const tickerEl = document.getElementById('tickerText');
-            const activities = [
-                "🔥 Rahul M. won 100 Coins from Spin Wheel!",
-                "💸 Priya S. withdrew ₹50 via Paytm!",
-                "🎉 Amit K. completed Daily Task (+50 Coins)",
-                "📲 Vikram R. earned +200 Coins via Referral!",
-                "💸 Neha G. successfully withdrew ₹100 UPI!"
-            ];
-
-            let index = 0;
-            setInterval(() => {
-                index = (index + 1) % activities.length;
-                if (tickerEl) {
-                    tickerEl.innerText = activities[index];
-                }
-            }, 4000);
-        }
-
-        // --- WITHDRAWAL ---
-        function processWithdrawal() {
-            const amount = parseInt(document.getElementById('withdrawAmount').value);
-            const details = document.getElementById('paymentDetails').value;
-            const method = document.getElementById('paymentMethod').value;
-
-            if (!details) {
-                alert("Please enter your UPI ID or Payment Phone Number!");
-                return;
-            }
-
-            if (coins < amount) {
-                alert(`Insufficient Coins! You need at least ${amount} coins to withdraw ₹${amount/100}.`);
-                return;
-            }
-
-            coins -= amount;
-            updateBalance();
-            addTransaction(`Withdrawal (${method}: ${details})`, amount, 'debit');
-            alert(`✅ Withdrawal Request Submitted Successfully!\nAmount: ₹${amount/100}\nMethod: ${method}\nDetails: ${details}\nStatus: Pending (Processing within 24 hours)`);
-        }
-    </script>
-</body>
-</html>
+            if (spinning) return
