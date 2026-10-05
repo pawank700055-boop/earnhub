@@ -514,70 +514,51 @@
                     <p style="font-size: 13px; color: #666; margin-bottom: 15px;">Complete quick tasks to earn coins instantly. (100 Coins = ₹1)</p>
                     
                     <div class="task-grid">
-                        <!-- Task 1 -->
                         <div class="task-card">
                             <div class="task-title">1. Daily Check-in</div>
                             <div class="task-reward">+50 Coins</div>
                             <button class="btn" onclick="completeTask('dailyCheckin', 50)">Claim Daily Bonus</button>
                         </div>
-
-                        <!-- Task 2 -->
                         <div class="task-card">
                             <div class="task-title">2. Visit Sponsor Link 1</div>
                             <div class="task-reward">+30 Coins</div>
                             <button class="btn btn-outline" onclick="openLinkTask('https://google.com', 30)">Open & View (15s)</button>
                         </div>
-
-                        <!-- Task 3 -->
                         <div class="task-card">
                             <div class="task-title">3. Visit Sponsor Link 2</div>
                             <div class="task-reward">+40 Coins</div>
                             <button class="btn btn-outline" onclick="openLinkTask('https://bing.com', 40)">Open & View (15s)</button>
                         </div>
-
-                        <!-- Task 4 -->
                         <div class="task-card">
                             <div class="task-title">4. Simple Math Quiz</div>
                             <div class="task-reward">+20 Coins</div>
                             <button class="btn" onclick="mathQuizTask()">Solve Quiz</button>
                         </div>
-
-                        <!-- Task 5 -->
                         <div class="task-card">
                             <div class="task-title">5. Quick Feedback Survey</div>
                             <div class="task-reward">+100 Coins</div>
                             <button class="btn" onclick="surveyTask()">Start Survey</button>
                         </div>
-
-                        <!-- Task 6 -->
                         <div class="task-card">
                             <div class="task-title">6. Scratch Card</div>
                             <div class="task-reward">Up to +80 Coins</div>
                             <button class="btn" onclick="scratchTask()">Scratch Now</button>
                         </div>
-
-                        <!-- Task 7 -->
                         <div class="task-card">
                             <div class="task-title">7. Solve Captcha</div>
                             <div class="task-reward">+25 Coins</div>
                             <button class="btn" onclick="captchaTask()">Solve Captcha</button>
                         </div>
-
-                        <!-- Task 8 -->
                         <div class="task-card">
                             <div class="task-title">8. Subscribe YouTube</div>
                             <div class="task-reward">+60 Coins</div>
                             <button class="btn btn-outline" onclick="openLinkTask('https://youtube.com', 60)">Subscribe & Earn</button>
                         </div>
-
-                        <!-- Task 9 -->
                         <div class="task-card">
                             <div class="task-title">9. Join Telegram Channel</div>
                             <div class="task-reward">+50 Coins</div>
                             <button class="btn btn-outline" onclick="openLinkTask('https://telegram.org', 50)">Join Channel</button>
                         </div>
-
-                        <!-- Task 10 -->
                         <div class="task-card">
                             <div class="task-title">10. Refer a Friend</div>
                             <div class="task-reward">+200 Coins</div>
@@ -817,7 +798,7 @@
             }
         }
 
-        // Auth Mode Toggle
+        // Auth Mode Toggle (Login / Sign Up)
         toggleAuthLink.addEventListener('click', function(e) {
             e.preventDefault();
             isSignUp = !isSignUp;
@@ -838,11 +819,19 @@
         authForm.addEventListener('submit', function(e) {
             e.preventDefault();
             const email = document.getElementById('authEmail').value;
-            if (email) {
+            const password = document.getElementById('authPassword').value;
+            
+            if (email && password) {
                 loggedInUser = email;
                 localStorage.setItem('taskEarnUser', loggedInUser);
                 showDashboard();
-                alert(isSignUp ? "Account created successfully! You received 100 welcome coins." : "Welcome back!");
+                if(isSignUp) {
+                    alert("Account created successfully! You received 100 welcome coins.");
+                } else {
+                    alert("Login Successful! Welcome back.");
+                }
+            } else {
+                alert("Please enter both email and password.");
             }
         });
 
@@ -969,7 +958,7 @@
         }
 
         function watchVideoTask(title, reward) {
-            alert(`▶️ Watching sponsored video ad... Please wait 15 seconds.`);
+            alert(`▶️️ Watching sponsored video ad... Please wait 15 seconds.`);
             setTimeout(() => {
                 addCoins(reward, title);
             }, 2000);
@@ -1041,4 +1030,139 @@
         let currentRotation = 0;
 
         function spinWheel() {
-            if (spinning) return
+            if (spinning) return;
+            
+            const lastSpinTime = localStorage.getItem('lastSpinTime');
+            const now = new Date().getTime();
+            
+            // Check 1 Hour Cooldown
+            if(lastSpinTime && (now - lastSpinTime < 3600000)) {
+                alert("⏳ Please wait for the cooldown timer to finish before spinning again!");
+                return;
+            }
+
+            spinning = true;
+            const container = document.getElementById('wheelContainer');
+            const randomSpins = Math.floor(Math.random() * 5) + 5; // Spin 5-10 times
+            const randomDegree = Math.floor(Math.random() * 360);
+            
+            currentRotation += (randomSpins * 360) + randomDegree;
+            container.style.transform = `rotate(${currentRotation}deg)`;
+
+            setTimeout(() => {
+                spinning = false;
+                localStorage.setItem('lastSpinTime', new Date().getTime());
+                
+                // Mock random reward for the demo
+                const winIndex = Math.floor(Math.random() * wheelSectors.length);
+                const reward = wheelSectors[winIndex].reward;
+                
+                if (reward > 0) {
+                    addCoins(reward, "Spin Wheel Reward");
+                } else {
+                    alert("😔 Better luck next time!");
+                }
+                
+                checkSpinCooldown();
+            }, 4000);
+        }
+
+        function checkSpinCooldown() {
+            const lastSpinTime = localStorage.getItem('lastSpinTime');
+            const spinBtn = document.getElementById('spinBtn');
+            const badge = document.getElementById('spinTimerBadge');
+            const countdownEl = document.getElementById('spinCountdown');
+
+            if (lastSpinTime) {
+                const now = new Date().getTime();
+                const diff = now - lastSpinTime;
+                
+                if (diff < 3600000) { // 1 Hour in milliseconds
+                    spinBtn.disabled = true;
+                    badge.classList.remove('hidden');
+                    
+                    const interval = setInterval(() => {
+                        const newNow = new Date().getTime();
+                        const timeLeft = 3600000 - (newNow - lastSpinTime);
+                        
+                        if (timeLeft <= 0) {
+                            clearInterval(interval);
+                            spinBtn.disabled = false;
+                            badge.classList.add('hidden');
+                        } else {
+                            const minutes = Math.floor((timeLeft % 3600000) / 60000);
+                            const seconds = Math.floor((timeLeft % 60000) / 1000);
+                            countdownEl.innerText = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                        }
+                    }, 1000);
+                }
+            }
+        }
+
+        // --- LEADERBOARD & LIVE TICKER ---
+        function renderLeaderboard() {
+            const list = document.getElementById('leaderboardList');
+            if(!list) return;
+            const topUsers = [
+                {name: "Vikas Singh", coins: 54200},
+                {name: "Rahul M.", coins: 48500},
+                {name: "Priya Das", coins: 45000},
+                {name: "Amit Kumar", coins: 39100},
+                {name: "Sneha R.", coins: 34200}
+            ];
+            
+            list.innerHTML = topUsers.map((user, index) => `
+                <div class="leader-item">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <div class="leader-rank">#${index + 1}</div>
+                        <div style="font-weight: 600;">${user.name}</div>
+                    </div>
+                    <div style="color: #e67e22; font-weight: bold;">${user.coins} Coins</div>
+                </div>
+            `).join('');
+        }
+
+        function startLiveTicker() {
+            const ticker = document.getElementById('tickerText');
+            if(!ticker) return;
+            const names = ["Rahul", "Priya", "Amit", "Neha", "Vikas", "Sonia", "Karan"];
+            const amounts = [50, 100, 25, 200, 500, 10];
+            const tasks = ["Spin Wheel", "Video Ad", "Survey Task", "Scratch Card"];
+            
+            setInterval(() => {
+                const randomName = names[Math.floor(Math.random() * names.length)];
+                const randomAmount = amounts[Math.floor(Math.random() * amounts.length)];
+                const randomTask = tasks[Math.floor(Math.random() * tasks.length)];
+                
+                ticker.innerText = `🔥 ${randomName} just won ${randomAmount} Coins from ${randomTask}!`;
+            }, 3500);
+        }
+
+        // --- WITHDRAWAL LOGIC ---
+        function processWithdrawal() {
+            const withdrawAmount = parseInt(document.getElementById('withdrawAmount').value);
+            const paymentDetails = document.getElementById('paymentDetails').value;
+            const paymentMethod = document.getElementById('paymentMethod').value;
+            
+            if(!paymentDetails.trim()) {
+                alert("⚠️ Please enter your payment address or phone number.");
+                return;
+            }
+            
+            if(coins < withdrawAmount) {
+                alert("❌ Insufficient coins! Complete more tasks to reach the minimum amount.");
+                return;
+            }
+            
+            // Deduct balance and record history
+            coins -= withdrawAmount;
+            updateBalance();
+            addTransaction(`Withdrawal (${paymentMethod})`, withdrawAmount, 'debit');
+            
+            alert(`✅ Success! Your withdrawal request of ₹${withdrawAmount/100} has been submitted and will be processed within 24 hours.`);
+            document.getElementById('paymentDetails').value = ''; // clear input
+        }
+
+    </script>
+</body>
+</html>
