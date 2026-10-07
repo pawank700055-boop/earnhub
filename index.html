@@ -7,522 +7,115 @@
 <title>TaskEarn - Earn Coins & Play Games</title>
 
 <!-- EXISTING ADS - KEPT AS REQUESTED -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2533779272788105"
- crossorigin="anonymous"></script>
-
-<script data-cfasync="false"
- src="https://abscloud.org/1/4b5052c3fa04dd31bc06ee0589554d00"></script>
-
-<script data-cfasync="false"
- src="https://bauval.org/14/c3997dc24a36599fc285d153ee28c70a"></script>
-
-<script type="text/javascript"
- src="//data527.click/b4f957e813495ed55175/ad59f6c234/?placementName=earhub"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2533779272788105" crossorigin="anonymous"></script>
+<script data-cfasync="false" src="https://abscloud.org/1/4b5052c3fa04dd31bc06ee0589554d00"></script>
+<script data-cfasync="false" src="https://bauval.org/14/c3997dc24a36599fc285d153ee28c70a"></script>
+<script type="text/javascript" src="//data527.click/b4f957e813495ed55175/ad59f6c234/?placementName=earhub"></script>
 
 <style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
-}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;}
+body{background:#f0f4f8;color:#1e293b;min-height:100vh;padding-bottom:80px;}
+button,input,select,textarea{font:inherit;}
+button{-webkit-tap-highlight-color:transparent;cursor:pointer;}
 
-body{
-    background:#f0f4f8;
-    color:#1e293b;
-    min-height:100vh;
-}
+header{background:#fff;border-bottom:2px solid #e2e8f0;padding:12px 15px;display:flex;justify-content:space-between;align-items:center;gap:10px;box-shadow:0 4px 12px rgba(0,0,0,.05);position:sticky;top:0;z-index:100;}
+.logo{font-size:21px;font-weight:800;color:#10b981;cursor:pointer;white-space:nowrap;}
+.header-actions{display:flex;align-items:center;gap:7px;}
+.wallet-badge{background:#ecfdf5;border:1.5px solid #10b981;padding:6px 10px;border-radius:20px;font-weight:700;color:#047857;font-size:12px;}
+.profile-chip{background:#3b82f6;color:white;padding:7px 11px;border-radius:20px;font-size:12px;font-weight:600;border:0;}
 
-button,input,select{
-    font:inherit;
-}
+.container{max-width:900px;margin:18px auto;padding:0 12px 30px;}
+.trust-banner{display:flex;justify-content:space-around;gap:8px;background:#fff;padding:12px 8px;border-radius:12px;margin-bottom:15px;border:1px solid #e2e8f0;text-align:center;font-size:11px;font-weight:600;color:#475569;}
+.card{background:#fff;border-radius:14px;padding:20px;margin-bottom:18px;box-shadow:0 4px 15px rgba(0,0,0,.04);border:1px solid #e2e8f0;}
+.card h3{margin-bottom:7px;}
+.muted{font-size:13px;color:#64748b;}
 
-button{
-    -webkit-tap-highlight-color:transparent;
-}
+.nav-tabs{display:flex;gap:7px;overflow-x:auto;padding-bottom:10px;margin-bottom:8px;scrollbar-width:thin;}
+.tab-btn{padding:9px 14px;background:#e2e8f0;border:0;border-radius:20px;white-space:nowrap;font-weight:600;color:#475569;font-size:13px;}
+.tab-btn.active{background:#10b981;color:#fff;box-shadow:0 3px 8px rgba(16,185,129,.3);}
 
-header{
-    background:#fff;
-    border-bottom:2px solid #e2e8f0;
-    padding:12px 15px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
-    box-shadow:0 4px 12px rgba(0,0,0,.05);
-    position:sticky;
-    top:0;
-    z-index:100;
-}
+.task-grid,.game-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:13px;margin-top:15px;}
+.task-card,.game-card{border:1px solid #e2e8f0;border-radius:12px;padding:16px;background:#fff;display:flex;flex-direction:column;justify-content:space-between;min-height:150px;transition:.2s;}
+.task-card:hover,.game-card:hover{transform:translateY(-2px);box-shadow:0 6px 12px rgba(0,0,0,.05);}
+.task-title{font-weight:700;font-size:15px;margin-bottom:7px;}
+.task-reward{color:#b45309;font-weight:800;font-size:13px;margin-bottom:12px;background:#fef3c7;padding:4px 8px;border-radius:6px;display:inline-block;}
 
-.logo{
-    font-size:21px;
-    font-weight:800;
-    color:#10b981;
-    cursor:pointer;
-    white-space:nowrap;
-}
+.btn{background:#10b981;color:#fff;border:0;padding:11px 16px;border-radius:8px;font-weight:700;transition:.2s;width:100%;font-size:14px;}
+.btn:hover{background:#059669;}
+.btn:disabled{background:#94a3b8;cursor:not-allowed;}
+.btn-outline{background:transparent;color:#10b981;border:2px solid #10b981;}
+.btn-outline:hover{background:#10b981;color:#fff;}
+.btn-danger{background:#ef4444;}
+.btn-blue{background:#3b82f6;}
+.btn-purple{background:#8b5cf6;}
 
-.header-actions{
-    display:flex;
-    align-items:center;
-    gap:7px;
-}
+.form-group{margin-bottom:15px;}
+.form-group label{display:block;margin-bottom:6px;font-size:14px;font-weight:600;}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:11px 13px;border:1px solid #cbd5e1;border-radius:8px;outline:none;}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:#10b981;}
 
-.wallet-badge{
-    background:#ecfdf5;
-    border:1.5px solid #10b981;
-    padding:6px 10px;
-    border-radius:20px;
-    font-weight:700;
-    color:#047857;
-    font-size:12px;
-}
+.hidden{display:none!important;}
 
-.profile-chip{
-    background:#3b82f6;
-    color:white;
-    padding:7px 11px;
-    border-radius:20px;
-    font-size:12px;
-    font-weight:600;
-    cursor:pointer;
-    border:0;
-}
+.modal{position:fixed;inset:0;background:rgba(15,23,42,.68);display:flex;align-items:center;justify-content:center;z-index:1000;padding:15px;}
+.modal-content{background:#fff;padding:22px;border-radius:16px;width:100%;max-width:420px;text-align:center;max-height:92vh;overflow:auto;}
 
-.container{
-    max-width:900px;
-    margin:18px auto;
-    padding:0 12px 30px;
-}
+.wheel-wrapper{position:relative;width:min(280px,78vw);height:min(280px,78vw);margin:20px auto;}
+.wheel-pointer{position:absolute;top:-10px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:26px solid #ef4444;z-index:10;filter:drop-shadow(0 2px 4px rgba(0,0,0,.3));}
+.wheel-canvas-container{width:100%;height:100%;border-radius:50%;overflow:hidden;border:6px solid #10b981;box-shadow:0 6px 18px rgba(0,0,0,.15);transition:transform 4s cubic-bezier(.15,.85,.35,1.02);background:#fff;}
+#wheelCanvas{width:100%;height:100%;display:block;}
 
-.trust-banner{
-    display:flex;
-    justify-content:space-around;
-    gap:8px;
-    background:#fff;
-    padding:12px 8px;
-    border-radius:12px;
-    margin-bottom:15px;
-    border:1px solid #e2e8f0;
-    text-align:center;
-    font-size:11px;
-    font-weight:600;
-    color:#475569;
-}
+.history-list{margin-top:15px;}
+.history-item{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid #f1f5f9;background:#fff;border-radius:8px;margin-bottom:8px;border:1px solid #e2e8f0;}
+.tx-plus{color:#10b981;font-weight:700;white-space:nowrap;}
+.tx-minus{color:#ef4444;font-weight:700;white-space:nowrap;}
 
-.card{
-    background:#fff;
-    border-radius:14px;
-    padding:20px;
-    margin-bottom:18px;
-    box-shadow:0 4px 15px rgba(0,0,0,.04);
-    border:1px solid #e2e8f0;
-}
+.game-icon{font-size:38px;margin-bottom:8px;}
+.game-title{font-size:16px;font-weight:800;margin-bottom:5px;}
+.game-reward{color:#d97706;font-size:13px;font-weight:700;margin-bottom:12px;}
+.game-area{margin:18px 0;padding:18px;background:#f8fafc;border-radius:12px;border:1px solid #e2e8f0;}
+.tap-button{width:150px;height:150px;border-radius:50%;border:0;background:linear-gradient(145deg,#10b981,#059669);color:#fff;font-size:20px;font-weight:800;box-shadow:0 8px 20px rgba(16,185,129,.3);user-select:none;}
+.tap-button:active{transform:scale(.95);}
 
-.card h3{
-    margin-bottom:7px;
-}
+.reaction-box{height:180px;border-radius:14px;background:#ef4444;color:white;display:flex;align-items:center;justify-content:center;font-size:21px;font-weight:800;user-select:none;}
+.reaction-box.ready{background:#10b981;}
 
-.muted{
-    font-size:13px;
-    color:#64748b;
-}
+.memory-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:320px;margin:auto;}
+.memory-card{aspect-ratio:1;border:0;border-radius:8px;background:#3b82f6;color:transparent;font-size:25px;}
+.memory-card.flipped,.memory-card.matched{background:#ecfdf5;color:#047857;}
 
-.nav-tabs{
-    display:flex;
-    gap:7px;
-    overflow-x:auto;
-    padding-bottom:10px;
-    margin-bottom:8px;
-    scrollbar-width:thin;
-}
+.timer-badge{background:#fef3c7;color:#b45309;padding:7px 13px;border-radius:20px;font-weight:bold;font-size:13px;display:inline-block;margin:8px 0;}
 
-.tab-btn{
-    padding:9px 14px;
-    background:#e2e8f0;
-    border:0;
-    border-radius:20px;
-    white-space:nowrap;
-    cursor:pointer;
-    font-weight:600;
-    color:#475569;
-    font-size:13px;
-}
+/* CAPTCHA BOX */
+.captcha-box{background:#f8fafc;border:1px solid #cbd5e1;padding:10px 14px;border-radius:8px;display:flex;align-items:center;justify-content:space-between;margin:10px 0;}
+.captcha-check{display:flex;align-items:center;gap:10px;}
 
-.tab-btn.active{
-    background:#10b981;
-    color:#fff;
-    box-shadow:0 3px 8px rgba(16,185,129,.3);
-}
+/* FLOATING CHAT WIDGET */
+.chat-widget-btn{position:fixed;bottom:20px;right:20px;width:55px;height:55px;border-radius:50%;background:#10b981;color:#fff;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 4px 15px rgba(0,0,0,.2);z-index:999;border:0;}
+.chat-window{position:fixed;bottom:85px;right:20px;width:min(340px,90vw);height:420px;background:#fff;border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,.18);border:1px solid #e2e8f0;display:flex;flex-direction:column;z-index:999;overflow:hidden;}
+.chat-header{background:#10b981;color:#fff;padding:12px 15px;font-weight:bold;display:flex;justify-content:space-between;align-items:center;}
+.chat-messages{flex:1;padding:12px;overflow-y:auto;background:#f8fafc;display:flex;flex-direction:column;gap:8px;font-size:13px;}
+.msg-bot{background:#e2e8f0;color:#1e293b;padding:8px 12px;border-radius:12px 12px 12px 0;max-width:82%;align-self:flex-start;}
+.msg-user{background:#10b981;color:#fff;padding:8px 12px;border-radius:12px 12px 0 12px;max-width:82%;align-self:flex-end;}
+.chat-input-area{padding:10px;display:flex;gap:6px;border-top:1px solid #e2e8f0;background:#fff;}
+.chat-input-area input{flex:1;padding:8px 12px;border:1px solid #cbd5e1;border-radius:20px;outline:none;}
+.chat-input-area button{background:#10b981;color:#fff;border:0;padding:8px 14px;border-radius:20px;font-weight:600;}
 
-.task-grid,
-.game-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:13px;
-    margin-top:15px;
-}
+/* PROFILE DETAILS */
+.profile-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;text-align:left;margin-top:15px;}
+.profile-info-item{background:#f8fafc;padding:10px;border-radius:8px;border:1px solid #e2e8f0;}
+.profile-info-item small{color:#64748b;display:block;}
+.profile-info-item strong{color:#1e293b;font-size:14px;}
 
-.task-card,
-.game-card{
-    border:1px solid #e2e8f0;
-    border-radius:12px;
-    padding:16px;
-    background:#fff;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-    min-height:150px;
-    transition:.2s;
-}
-
-.task-card:hover,
-.game-card:hover{
-    transform:translateY(-2px);
-    box-shadow:0 6px 12px rgba(0,0,0,.05);
-}
-
-.task-title{
-    font-weight:700;
-    font-size:15px;
-    margin-bottom:7px;
-}
-
-.task-reward{
-    color:#b45309;
-    font-weight:800;
-    font-size:13px;
-    margin-bottom:12px;
-    background:#fef3c7;
-    padding:4px 8px;
-    border-radius:6px;
-    display:inline-block;
-}
-
-.btn{
-    background:#10b981;
-    color:#fff;
-    border:0;
-    padding:11px 16px;
-    border-radius:8px;
-    font-weight:700;
-    cursor:pointer;
-    transition:.2s;
-    width:100%;
-    font-size:14px;
-}
-
-.btn:hover{
-    background:#059669;
-}
-
-.btn:disabled{
-    background:#94a3b8;
-    cursor:not-allowed;
-}
-
-.btn-outline{
-    background:transparent;
-    color:#10b981;
-    border:2px solid #10b981;
-}
-
-.btn-outline:hover{
-    background:#10b981;
-    color:#fff;
-}
-
-.btn-danger{
-    background:#ef4444;
-}
-
-.btn-blue{
-    background:#3b82f6;
-}
-
-.btn-purple{
-    background:#8b5cf6;
-}
-
-.form-group{
-    margin-bottom:15px;
-}
-
-.form-group label{
-    display:block;
-    margin-bottom:6px;
-    font-size:14px;
-    font-weight:600;
-}
-
-.form-group input,
-.form-group select{
-    width:100%;
-    padding:11px 13px;
-    border:1px solid #cbd5e1;
-    border-radius:8px;
-    outline:none;
-}
-
-.form-group input:focus,
-.form-group select:focus{
-    border-color:#10b981;
-}
-
-.hidden{
-    display:none!important;
-}
-
-.modal{
-    position:fixed;
-    inset:0;
-    background:rgba(15,23,42,.68);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    z-index:1000;
-    padding:15px;
-}
-
-.modal-content{
-    background:#fff;
-    padding:22px;
-    border-radius:16px;
-    width:100%;
-    max-width:400px;
-    text-align:center;
-    max-height:92vh;
-    overflow:auto;
-}
-
-.wheel-wrapper{
-    position:relative;
-    width:min(280px,78vw);
-    height:min(280px,78vw);
-    margin:20px auto;
-}
-
-.wheel-pointer{
-    position:absolute;
-    top:-10px;
-    left:50%;
-    transform:translateX(-50%);
-    width:0;
-    height:0;
-    border-left:14px solid transparent;
-    border-right:14px solid transparent;
-    border-top:26px solid #ef4444;
-    z-index:10;
-    filter:drop-shadow(0 2px 4px rgba(0,0,0,.3));
-}
-
-.wheel-canvas-container{
-    width:100%;
-    height:100%;
-    border-radius:50%;
-    overflow:hidden;
-    border:6px solid #10b981;
-    box-shadow:0 6px 18px rgba(0,0,0,.15);
-    transition:transform 4s cubic-bezier(.15,.85,.35,1.02);
-    background:#fff;
-}
-
-#wheelCanvas{
-    width:100%;
-    height:100%;
-    display:block;
-}
-
-.history-list{
-    margin-top:15px;
-}
-
-.history-item{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
-    padding:12px 14px;
-    border-bottom:1px solid #f1f5f9;
-    background:#fff;
-    border-radius:8px;
-    margin-bottom:8px;
-    border:1px solid #e2e8f0;
-}
-
-.tx-plus{
-    color:#10b981;
-    font-weight:700;
-    white-space:nowrap;
-}
-
-.tx-minus{
-    color:#ef4444;
-    font-weight:700;
-    white-space:nowrap;
-}
-
-.game-icon{
-    font-size:38px;
-    margin-bottom:8px;
-}
-
-.game-title{
-    font-size:16px;
-    font-weight:800;
-    margin-bottom:5px;
-}
-
-.game-reward{
-    color:#d97706;
-    font-size:13px;
-    font-weight:700;
-    margin-bottom:12px;
-}
-
-.game-area{
-    margin:18px 0;
-    padding:18px;
-    background:#f8fafc;
-    border-radius:12px;
-    border:1px solid #e2e8f0;
-}
-
-.tap-button{
-    width:150px;
-    height:150px;
-    border-radius:50%;
-    border:0;
-    background:linear-gradient(145deg,#10b981,#059669);
-    color:#fff;
-    font-size:20px;
-    font-weight:800;
-    cursor:pointer;
-    box-shadow:0 8px 20px rgba(16,185,129,.3);
-    user-select:none;
-}
-
-.tap-button:active{
-    transform:scale(.95);
-}
-
-.reaction-box{
-    height:180px;
-    border-radius:14px;
-    background:#ef4444;
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:21px;
-    font-weight:800;
-    cursor:pointer;
-    user-select:none;
-}
-
-.reaction-box.ready{
-    background:#10b981;
-}
-
-.memory-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:8px;
-    max-width:320px;
-    margin:auto;
-}
-
-.memory-card{
-    aspect-ratio:1;
-    border:0;
-    border-radius:8px;
-    background:#3b82f6;
-    color:transparent;
-    font-size:25px;
-    cursor:pointer;
-}
-
-.memory-card.flipped,
-.memory-card.matched{
-    background:#ecfdf5;
-    color:#047857;
-}
-
-.memory-card.matched{
-    cursor:default;
-}
-
-.timer-badge{
-    background:#fef3c7;
-    color:#b45309;
-    padding:7px 13px;
-    border-radius:20px;
-    font-weight:bold;
-    font-size:13px;
-    display:inline-block;
-    margin:8px 0;
-}
-
-.progress{
-    width:100%;
-    height:8px;
-    background:#e2e8f0;
-    border-radius:10px;
-    overflow:hidden;
-    margin:10px 0;
-}
-
-.progress-bar{
-    height:100%;
-    width:0;
-    background:#10b981;
-    transition:.2s;
-}
-
-.footer{
-    text-align:center;
-    padding:20px;
-    font-size:13px;
-    color:#64748b;
-    background:#fff;
-    border-top:1px solid #e2e8f0;
-}
+.footer{text-align:center;padding:20px;font-size:13px;color:#64748b;background:#fff;border-top:1px solid #e2e8f0;}
 
 @media(max-width:600px){
-    header{
-        padding:10px;
-    }
-
-    .logo{
-        font-size:18px;
-    }
-
-    .wallet-badge{
-        font-size:11px;
-        padding:5px 8px;
-    }
-
-    .profile-chip{
-        padding:6px 8px;
-    }
-
-    .trust-banner{
-        font-size:9px;
-    }
-
-    .card{
-        padding:16px;
-    }
-
-    .task-grid,
-    .game-grid{
-        grid-template-columns:1fr;
-    }
-
-    .history-item{
-        font-size:13px;
-    }
+    header{padding:10px;}
+    .logo{font-size:18px;}
+    .wallet-badge{font-size:11px;padding:5px 8px;}
+    .profile-chip{padding:6px 8px;}
+    .trust-banner{font-size:9px;}
+    .card{padding:16px;}
+    .task-grid,.game-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -531,16 +124,9 @@ header{
 
 <header>
     <div class="logo" onclick="switchTab('tasksTab')">🪙 TaskEarn</div>
-
     <div class="header-actions">
-        <div class="wallet-badge">
-            🪙 <span id="coinBalance">0</span>
-            Coins (₹<span id="rupeeBalance">0.00</span>)
-        </div>
-
-        <button class="profile-chip" onclick="switchTab('profileTab')">
-            👤 Profile
-        </button>
+        <div class="wallet-badge">🪙 <span id="coinBalance">0</span> Coins (₹<span id="rupeeBalance">0.00</span>)</div>
+        <button class="profile-chip" onclick="switchTab('profileTab')">👤 Profile</button>
     </div>
 </header>
 
@@ -548,55 +134,33 @@ header{
 
     <div class="trust-banner">
         <div>⚡ Fast Rewards</div>
-        <div>🔒 Secure</div>
+        <div>🔒 100% Safe</div>
         <div>🎮 Play & Earn</div>
     </div>
 
     <div class="nav-tabs">
-        <button class="tab-btn active" data-tab="tasksTab"
-            onclick="switchTab('tasksTab',this)">🎯 Tasks</button>
-
-        <button class="tab-btn" data-tab="gamesTab"
-            onclick="switchTab('gamesTab',this)">🎮 Games</button>
-
-        <button class="tab-btn" data-tab="spinTab"
-            onclick="switchTab('spinTab',this)">🎰 Spin</button>
-
-        <button class="tab-btn" data-tab="referralTab"
-            onclick="switchTab('referralTab',this)">👥 Refer</button>
-
-        <button class="tab-btn" data-tab="withdrawTab"
-            onclick="switchTab('withdrawTab',this)">💸 Withdraw</button>
-
-        <button class="tab-btn" data-tab="historyTab"
-            onclick="switchTab('historyTab',this)">📜 History</button>
-
-        <button class="tab-btn" data-tab="profileTab"
-            onclick="switchTab('profileTab',this)">👤 Profile</button>
+        <button class="tab-btn active" data-tab="tasksTab" onclick="switchTab('tasksTab',this)">🎯 Tasks</button>
+        <button class="tab-btn" data-tab="gamesTab" onclick="switchTab('gamesTab',this)">🎮 Games</button>
+        <button class="tab-btn" data-tab="spinTab" onclick="switchTab('spinTab',this)">🎰 Spin</button>
+        <button class="tab-btn" data-tab="referralTab" onclick="switchTab('referralTab',this)">👥 Refer</button>
+        <button class="tab-btn" data-tab="withdrawTab" onclick="switchTab('withdrawTab',this)">💸 Withdraw</button>
+        <button class="tab-btn" data-tab="historyTab" onclick="switchTab('historyTab',this)">📜 History</button>
+        <button class="tab-btn" data-tab="profileTab" onclick="switchTab('profileTab',this)">👤 Profile</button>
     </div>
 
-
-    <!-- TASKS -->
-
+    <!-- TASKS TAB -->
     <div id="tasksTab" class="tab-content">
-
         <div class="card">
             <h3>🎯 Daily Tasks</h3>
-            <p class="muted">
-                Tasks complete karke coins earn karo.
-                100 Coins = ₹1
-            </p>
+            <p class="muted">Tasks complete karke coins earn karo. 100 Coins = ₹1</p>
 
             <div class="task-grid">
-
                 <div class="task-card">
                     <div>
                         <div class="task-title">Daily Streak Bonus</div>
                         <div class="task-reward">+50 Coins</div>
                     </div>
-                    <button class="btn" onclick="claimDailyCheckin()">
-                        Claim Daily Bonus
-                    </button>
+                    <button class="btn" onclick="claimDailyCheckin()">Claim Daily Bonus</button>
                 </div>
 
                 <div class="task-card">
@@ -604,10 +168,7 @@ header{
                         <div class="task-title">Visit Partner Website 1</div>
                         <div class="task-reward">+30 Coins</div>
                     </div>
-                    <button class="btn btn-outline"
-                        onclick="openLinkTask('https://google.com',30,'Partner Site 1',this)">
-                        Visit Website
-                    </button>
+                    <button class="btn btn-outline" onclick="openLinkTask('https://google.com',30,'Partner Site 1',this)">Visit Website</button>
                 </div>
 
                 <div class="task-card">
@@ -615,10 +176,7 @@ header{
                         <div class="task-title">Visit Partner Website 2</div>
                         <div class="task-reward">+40 Coins</div>
                     </div>
-                    <button class="btn btn-outline"
-                        onclick="openLinkTask('https://bing.com',40,'Partner Site 2',this)">
-                        Visit Website
-                    </button>
+                    <button class="btn btn-outline" onclick="openLinkTask('https://bing.com',40,'Partner Site 2',this)">Visit Website</button>
                 </div>
 
                 <div class="task-card">
@@ -626,9 +184,7 @@ header{
                         <div class="task-title">Quick Math Challenge</div>
                         <div class="task-reward">+20 Coins</div>
                     </div>
-                    <button class="btn" onclick="mathQuizTask()">
-                        Solve Quiz
-                    </button>
+                    <button class="btn" onclick="mathQuizTask()">Solve Quiz</button>
                 </div>
 
                 <div class="task-card">
@@ -636,9 +192,7 @@ header{
                         <div class="task-title">Quick Feedback Survey</div>
                         <div class="task-reward">+100 Coins</div>
                     </div>
-                    <button class="btn" onclick="surveyTask()">
-                        Start Survey
-                    </button>
+                    <button class="btn" onclick="surveyTask()">Start Survey</button>
                 </div>
 
                 <div class="task-card">
@@ -646,9 +200,7 @@ header{
                         <div class="task-title">Lucky Scratch Card</div>
                         <div class="task-reward">20–100 Coins</div>
                     </div>
-                    <button class="btn" onclick="scratchTask()">
-                        Scratch Now
-                    </button>
+                    <button class="btn" onclick="scratchTask()">Scratch Now</button>
                 </div>
 
                 <div class="task-card">
@@ -656,9 +208,7 @@ header{
                         <div class="task-title">Captcha Verification</div>
                         <div class="task-reward">+25 Coins</div>
                     </div>
-                    <button class="btn" onclick="captchaTask()">
-                        Solve Captcha
-                    </button>
+                    <button class="btn" onclick="captchaTask()">Solve Captcha</button>
                 </div>
 
                 <div class="task-card">
@@ -666,10 +216,7 @@ header{
                         <div class="task-title">Subscribe YouTube</div>
                         <div class="task-reward">+60 Coins</div>
                     </div>
-                    <button class="btn btn-outline"
-                        onclick="openLinkTask('https://www.youtube.com/@PawanKumar-y8c6d',60,'YouTube Subscribe',this)">
-                        Subscribe & Earn
-                    </button>
+                    <button class="btn btn-outline" onclick="openLinkTask('https://www.youtube.com/@PawanKumar-y8c6d',60,'YouTube Subscribe',this)">Subscribe & Earn</button>
                 </div>
 
                 <div class="task-card">
@@ -677,38 +224,26 @@ header{
                         <div class="task-title">Refer a Friend</div>
                         <div class="task-reward">+200 Coins</div>
                     </div>
-                    <button class="btn btn-outline"
-                        onclick="switchTab('referralTab')">
-                        Refer Now
-                    </button>
+                    <button class="btn btn-outline" onclick="switchTab('referralTab')">Refer Now</button>
                 </div>
-
             </div>
         </div>
     </div>
 
-
-    <!-- GAMES -->
-
+    <!-- GAMES TAB -->
     <div id="gamesTab" class="tab-content hidden">
-
         <div class="card">
             <h3>🎮 Mini Games</h3>
-            <p class="muted">
-                Skill-based mini games khelo aur daily coins earn karo.
-            </p>
+            <p class="muted">Skill-based mini games khelo aur daily coins earn karo.</p>
 
             <div class="game-grid">
-
                 <div class="game-card">
                     <div>
                         <div class="game-icon">👆</div>
                         <div class="game-title">Tap Challenge</div>
                         <div class="game-reward">10 sec • Up to +30 Coins</div>
                     </div>
-                    <button class="btn" onclick="openGame('tapGame')">
-                        Play Now
-                    </button>
+                    <button class="btn" onclick="openGame('tapGame')">Play Now</button>
                 </div>
 
                 <div class="game-card">
@@ -717,9 +252,7 @@ header{
                         <div class="game-title">Reaction Test</div>
                         <div class="game-reward">Fast reaction • +25 Coins</div>
                     </div>
-                    <button class="btn btn-blue" onclick="openGame('reactionGame')">
-                        Play Now
-                    </button>
+                    <button class="btn btn-blue" onclick="openGame('reactionGame')">Play Now</button>
                 </div>
 
                 <div class="game-card">
@@ -728,2016 +261,785 @@ header{
                         <div class="game-title">Memory Match</div>
                         <div class="game-reward">Match cards • +35 Coins</div>
                     </div>
-                    <button class="btn btn-purple" onclick="openGame('memoryGame')">
-                        Play Now
-                    </button>
+                    <button class="btn btn-purple" onclick="openGame('memoryGame')">Play Now</button>
                 </div>
-
             </div>
         </div>
     </div>
 
-
-    <!-- TAP GAME -->
-
-    <div id="tapGame" class="modal hidden">
-        <div class="modal-content">
-
-            <h3>👆 Tap Challenge</h3>
-            <p class="muted">
-                10 seconds mein jitna ho sake tap karo!
-            </p>
-
-            <div class="timer-badge">
-                Time: <span id="tapTime">10</span>s
-            </div>
-
-            <div class="game-area">
-                <h2 id="tapCount">0</h2>
-                <br>
-
-                <button id="tapButton"
-                    class="tap-button"
-                    onclick="tapGameClick()">
-                    TAP!
-                </button>
-            </div>
-
-            <button id="tapStartBtn"
-                class="btn"
-                onclick="startTapGame()">
-                Start Game
-            </button>
-
-            <br><br>
-
-            <button class="btn btn-danger"
-                onclick="closeGame('tapGame')">
-                Close
-            </button>
-
-        </div>
-    </div>
-
-
-    <!-- REACTION GAME -->
-
-    <div id="reactionGame" class="modal hidden">
-        <div class="modal-content">
-
-            <h3>⚡ Reaction Test</h3>
-
-            <p class="muted" style="margin-bottom:15px;">
-                Green hote hi screen par tap karo.
-            </p>
-
-            <div id="reactionBox"
-                class="reaction-box"
-                onclick="reactionClick()">
-                Start dabao
-            </div>
-
-            <div style="margin:15px 0;font-weight:700;">
-                Result:
-                <span id="reactionResult">-</span>
-            </div>
-
-            <button id="reactionStart"
-                class="btn btn-blue"
-                onclick="startReactionGame()">
-                Start Test
-            </button>
-
-            <br><br>
-
-            <button class="btn btn-danger"
-                onclick="closeGame('reactionGame')">
-                Close
-            </button>
-
-        </div>
-    </div>
-
-
-    <!-- MEMORY GAME -->
-
-    <div id="memoryGame" class="modal hidden">
-        <div class="modal-content">
-
-            <h3>🧠 Memory Match</h3>
-
-            <p class="muted">
-                Same emojis ke pairs match karo.
-            </p>
-
-            <div style="margin:10px 0;font-weight:700;">
-                Moves: <span id="memoryMoves">0</span>
-            </div>
-
-            <div id="memoryGrid" class="memory-grid"></div>
-
-            <br>
-
-            <button class="btn btn-purple"
-                onclick="startMemoryGame()">
-                Restart
-            </button>
-
-            <br><br>
-
-            <button class="btn btn-danger"
-                onclick="closeGame('memoryGame')">
-                Close
-            </button>
-
-        </div>
-    </div>
-
-
-    <!-- SPIN -->
-
+    <!-- SPIN TAB -->
     <div id="spinTab" class="tab-content hidden">
-
         <div class="card" style="text-align:center;">
-
             <h3>🎰 Lucky Spin</h3>
-
-            <p class="muted">
-                Roz ek baar free spin.
-            </p>
+            <p class="muted">Roz ek baar free spin.</p>
 
             <div class="wheel-wrapper">
-
                 <div class="wheel-pointer"></div>
-
-                <div id="wheelContainer"
-                    class="wheel-canvas-container">
-
-                    <canvas id="wheelCanvas"
-                        width="300"
-                        height="300">
-                    </canvas>
-
+                <div id="wheelContainer" class="wheel-canvas-container">
+                    <canvas id="wheelCanvas" width="300" height="300"></canvas>
                 </div>
-
             </div>
 
-            <button id="spinBtn"
-                class="btn"
-                style="max-width:250px;margin:auto;"
-                onclick="spinWheel()">
-                Spin Now
-            </button>
-
-            <div id="spinStatus"
-                class="timer-badge">
-                Ready
-            </div>
-
+            <button id="spinBtn" class="btn" style="max-width:250px;margin:auto;" onclick="spinWheel()">Spin Now</button>
+            <div id="spinStatus" class="timer-badge">Ready</div>
         </div>
     </div>
 
-
-    <!-- REFERRAL -->
-
+    <!-- REFERRAL TAB -->
     <div id="referralTab" class="tab-content hidden">
-
         <div class="card">
-
             <h3>👥 Refer & Earn</h3>
+            <p class="muted" style="margin-bottom:15px;">Friends ko invite karo aur bonus coins pao.</p>
 
-            <p class="muted" style="margin-bottom:15px;">
-                Friends ko invite karo.
-            </p>
-
-            <div style="
-                background:#f8fafc;
-                padding:16px;
-                border-radius:10px;
-                border:1px solid #e2e8f0;
-            ">
-
-                <label style="font-weight:700;font-size:14px;">
-                    Your Referral Link
-                </label>
-
-                <div style="
-                    display:flex;
-                    gap:8px;
-                    margin-top:8px;
-                    margin-bottom:12px;
-                ">
-
-                    <input id="refLinkInput"
-                        readonly
-                        style="
-                        flex:1;
-                        min-width:0;
-                        padding:10px;
-                        border:1px solid #cbd5e1;
-                        border-radius:8px;
-                        ">
-
-                    <button class="btn"
-                        style="width:auto;"
-                        onclick="copyReferralLink()">
-                        Copy
-                    </button>
-
+            <div style="background:#f8fafc;padding:16px;border-radius:10px;border:1px solid #e2e8f0;">
+                <label style="font-weight:700;font-size:14px;">Your Referral Link</label>
+                <div style="display:flex;gap:8px;margin-top:8px;margin-bottom:12px;">
+                    <input id="refLinkInput" readonly style="flex:1;min-width:0;padding:10px;border:1px solid #cbd5e1;border-radius:8px;">
+                    <button class="btn" style="width:auto;" onclick="copyReferralLink()">Copy</button>
                 </div>
-
                 <div style="display:flex;gap:8px;">
-
-                    <button class="btn"
-                        style="background:#25D366;"
-                        onclick="shareWhatsApp()">
-                        WhatsApp
-                    </button>
-
-                    <button class="btn"
-                        style="background:#0088cc;"
-                        onclick="shareTelegram()">
-                        Telegram
-                    </button>
-
+                    <button class="btn" style="background:#25D366;" onclick="shareWhatsApp()">WhatsApp</button>
+                    <button class="btn" style="background:#0088cc;" onclick="shareTelegram()">Telegram</button>
                 </div>
-
             </div>
         </div>
     </div>
 
-
-    <!-- WITHDRAW -->
-
+    <!-- WITHDRAW TAB -->
     <div id="withdrawTab" class="tab-content hidden">
-
         <div class="card">
-
             <h3>💸 Withdrawal</h3>
-
-            <p class="muted" style="margin-bottom:15px;">
-                Minimum payout: <strong>500 Coins (₹5)</strong>
-            </p>
+            <p class="muted" style="margin-bottom:15px;">Minimum payout: <strong>500 Coins (₹5)</strong></p>
 
             <div class="form-group">
-
                 <label>Payment Method</label>
-
                 <select id="paymentMethod">
-                    <option value="UPI">
-                        UPI ID
-                    </option>
-
-                    <option value="Paytm">
-                        Paytm Number
-                    </option>
+                    <option value="UPI">UPI ID</option>
+                    <option value="Paytm">Paytm Number</option>
                 </select>
-
             </div>
 
             <div class="form-group">
-
                 <label>UPI ID / Mobile Number</label>
-
-                <input id="paymentAddress"
-                    type="text"
-                    maxlength="80"
-                    placeholder="example@upi / 9876543210">
-
+                <input id="paymentAddress" type="text" maxlength="80" placeholder="example@upi / 9876543210">
             </div>
 
-            <button class="btn"
-                onclick="requestWithdrawal()">
-                Request Withdrawal
-            </button>
+            <!-- CAPTCHA VERIFICATION -->
+            <div class="captcha-box">
+                <div class="captcha-check">
+                    <input type="checkbox" id="robotCheck" style="width:18px;height:18px;cursor:pointer;">
+                    <label for="robotCheck" style="font-size:13px;font-weight:600;cursor:pointer;">I am not a robot</label>
+                </div>
+                <span style="font-size:20px;">🛡️</span>
+            </div>
 
-            <p class="muted"
-                style="margin-top:12px;">
-                Note: request is stored in this browser until a real backend/payment system is connected.
-            </p>
+            <button class="btn" onclick="requestWithdrawal()">Request Withdrawal</button>
 
+            <h4 style="margin-top:25px;margin-bottom:10px;">📋 Withdrawal History</h4>
+            <div id="withdrawalHistoryList" class="history-list"></div>
         </div>
     </div>
 
-
-    <!-- HISTORY -->
-
+    <!-- HISTORY TAB -->
     <div id="historyTab" class="tab-content hidden">
-
         <div class="card">
-
-            <h3>📜 History</h3>
-
-            <div id="historyList"
-                class="history-list">
-            </div>
-
+            <h3>📜 Transaction History</h3>
+            <div id="historyList" class="history-list"></div>
         </div>
     </div>
 
-
-    <!-- PROFILE -->
-
+    <!-- PROFILE TAB (UPDATED WITH DETAILED INFO & ACCOUNT HELP) -->
     <div id="profileTab" class="tab-content hidden">
-
         <div class="card">
+            <h3>👤 User Profile</h3>
+            <p class="muted">Aapki profile aur account details yahan hain.</p>
 
-            <h3>👤 Profile</h3>
+            <div class="profile-info-grid">
+                <div class="profile-info-item">
+                    <small>User ID</small>
+                    <strong id="profUserId">user_123456</strong>
+                </div>
+                <div class="profile-info-item">
+                    <small>Account Status</small>
+                    <strong style="color:#10b981;">Active 🟢</strong>
+                </div>
+                <div class="profile-info-item">
+                    <small>Coin Balance</small>
+                    <strong id="profCoins">0 Coins</strong>
+                </div>
+                <div class="profile-info-item">
+                    <small>Rupee Value</small>
+                    <strong>₹<span id="profRupees">0.00</span></strong>
+                </div>
+            </div>
 
-            <p style="margin:15px 0;">
-                <strong>Coins:</strong>
-                <span id="profCoins">0</span>
-            </p>
+            <h4 style="margin-top:20px;margin-bottom:10px;">🔐 Account Settings</h4>
+            <div class="form-group">
+                <label>Your Name</label>
+                <input type="text" id="profUserName" placeholder="Enter name" value="TaskEarn Member">
+            </div>
+            <div class="form-group">
+                <label>Your Email / Phone</label>
+                <input type="text" id="profUserContact" placeholder="Email or Phone">
+            </div>
+            <button class="btn" onclick="saveProfileDetails()" style="margin-bottom:15px;">Save Profile Info</button>
 
-            <p style="margin-bottom:15px;">
-                <strong>Value:</strong>
-                ₹<span id="profRupees">0.00</span>
-            </p>
-
-            <button class="btn btn-danger"
-                onclick="resetLocalData()">
-                Reset Local Data
-            </button>
-
+            <button class="btn btn-danger" onclick="resetLocalData()">Reset Local Data</button>
         </div>
     </div>
 
 </div>
 
+<!-- MODALS FOR GAMES -->
+<div id="tapGame" class="modal hidden">
+    <div class="modal-content">
+        <h3>👆 Tap Challenge</h3>
+        <p class="muted">10 seconds mein jitna ho sake tap karo!</p>
+        <div class="timer-badge">Time: <span id="tapTime">10</span>s</div>
+        <div class="game-area">
+            <h2 id="tapCount">0</h2><br>
+            <button id="tapButton" class="tap-button" onclick="tapGameClick()">TAP!</button>
+        </div>
+        <button id="tapStartBtn" class="btn" onclick="startTapGame()">Start Game</button><br><br>
+        <button class="btn btn-danger" onclick="closeGame('tapGame')">Close</button>
+    </div>
+</div>
+
+<div id="reactionGame" class="modal hidden">
+    <div class="modal-content">
+        <h3>⚡ Reaction Test</h3>
+        <p class="muted" style="margin-bottom:15px;">Green hote hi screen par tap karo.</p>
+        <div id="reactionBox" class="reaction-box" onclick="reactionClick()">Start dabao</div>
+        <div style="margin:15px 0;font-weight:700;">Result: <span id="reactionResult">-</span></div>
+        <button id="reactionStart" class="btn btn-blue" onclick="startReactionGame()">Start Test</button><br><br>
+        <button class="btn btn-danger" onclick="closeGame('reactionGame')">Close</button>
+    </div>
+</div>
+
+<div id="memoryGame" class="modal hidden">
+    <div class="modal-content">
+        <h3>🧠 Memory Match</h3>
+        <p class="muted">Same emojis ke pairs match karo.</p>
+        <div style="margin:10px 0;font-weight:700;">Moves: <span id="memoryMoves">0</span></div>
+        <div id="memoryGrid" class="memory-grid"></div><br>
+        <button class="btn btn-purple" onclick="startMemoryGame()">Restart</button><br><br>
+        <button class="btn btn-danger" onclick="closeGame('memoryGame')">Close</button>
+    </div>
+</div>
 
 <!-- SCRATCH MODAL -->
-
 <div id="scratchModal" class="modal hidden">
-
     <div class="modal-content">
-
         <h3>🪙 Lucky Scratch Card</h3>
-
-        <p class="muted">
-            Finger ya mouse se scratch karo.
-        </p>
-
-        <div style="
-            position:relative;
-            width:250px;
-            height:150px;
-            margin:15px auto;
-        ">
-
-            <div style="
-                position:absolute;
-                inset:0;
-                display:flex;
-                align-items:center;
-                justify-content:center;
-                font-size:22px;
-                font-weight:bold;
-                color:#10b981;
-                background:#ecfdf5;
-                border-radius:10px;
-                border:2px dashed #10b981;
-            ">
-
+        <p class="muted">Finger ya mouse se scratch karo.</p>
+        <div style="position:relative;width:250px;height:150px;margin:15px auto;">
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:bold;color:#10b981;background:#ecfdf5;border-radius:10px;border:2px dashed #10b981;">
                 🎉 <span id="prizeAmount">0</span> Coins
-
             </div>
-
-            <canvas id="scratchCanvas"
-                width="250"
-                height="150"
-                style="
-                position:absolute;
-                inset:0;
-                border-radius:10px;
-                cursor:crosshair;
-                touch-action:none;
-                ">
-            </canvas>
-
+            <canvas id="scratchCanvas" width="250" height="150" style="position:absolute;inset:0;border-radius:10px;cursor:crosshair;touch-action:none;"></canvas>
         </div>
-
-        <button class="btn btn-danger"
-            onclick="closeScratchModal()">
-            Close
-        </button>
-
+        <button class="btn btn-danger" onclick="closeScratchModal()">Close</button>
     </div>
 </div>
 
+<!-- FLOATING CHAT / HELP WIDGET -->
+<button class="chat-widget-btn" onclick="toggleChatWindow()">💬</button>
+
+<div id="chatWindow" class="chat-window hidden">
+    <div class="chat-header">
+        <span>🎧 Help & Support</span>
+        <button onclick="toggleChatWindow()" style="background:none;border:0;color:#fff;font-size:18px;font-weight:bold;">✕</button>
+    </div>
+    <div id="chatMessages" class="chat-messages">
+        <div class="msg-bot">Namaste! TaskEarn Help Center mein aapka swagat hai. Main aapki kya madad kar sakta hoon?</div>
+    </div>
+    <div class="chat-input-area">
+        <input type="text" id="chatInput" placeholder="Sawal likhein..." onkeypress="handleChatKeyPress(event)">
+        <button onclick="sendChatMessage()">Send</button>
+    </div>
+</div>
 
 <footer class="footer">
     © 2026 TaskEarn. All rights reserved.
 </footer>
 
-
 <script>
-
-/* =========================================================
-   CORE STORAGE
-========================================================= */
-
+/* CORE STORAGE */
 const STORAGE = {
-    coins:'taskEarnCoins',
-    history:'taskEarnHistory',
-    userId:'taskEarnUserId'
+    coins: 'taskEarnCoins',
+    history: 'taskEarnHistory',
+    withdrawals: 'taskEarnWithdrawals',
+    userId: 'taskEarnUserId',
+    profile: 'taskEarnProfileDetails'
 };
 
 let coins = Number(localStorage.getItem(STORAGE.coins));
-
-if(!Number.isFinite(coins)){
-    coins = 100;
-}
+if(!Number.isFinite(coins)){ coins = 100; }
 
 let history;
-
-try{
-    history = JSON.parse(
-        localStorage.getItem(STORAGE.history)
-    ) || [];
-}catch(e){
-    history = [];
-}
-
+try { history = JSON.parse(localStorage.getItem(STORAGE.history)) || []; } catch(e){ history = []; }
 if(history.length === 0){
-    history.push({
-        title:'Welcome Bonus',
-        amount:100,
-        date:new Date().toLocaleString()
-    });
+    history.push({ title:'Welcome Bonus', amount:100, date:new Date().toLocaleString() });
 }
 
 let userId = localStorage.getItem(STORAGE.userId);
-
 if(!userId){
-    userId =
-        'user_' +
-        Math.random().toString(36).substring(2,10);
-
-    localStorage.setItem(STORAGE.userId,userId);
+    userId = 'user_' + Math.random().toString(36).substring(2,10);
+    localStorage.setItem(STORAGE.userId, userId);
 }
 
-
-/* =========================================================
-   INITIALIZATION
-========================================================= */
-
-window.addEventListener('load',function(){
-
+/* INITIALIZATION */
+window.addEventListener('load', function(){
     updateBalance();
     renderHistory();
+    renderWithdrawalHistory();
     setupReferralLink();
     drawWheel();
-
+    loadProfileDetails();
 });
 
-
-/* =========================================================
-   DATE HELPER
-========================================================= */
-
 function todayKey(){
-
     const d = new Date();
-
-    return [
-        d.getFullYear(),
-        String(d.getMonth()+1).padStart(2,'0'),
-        String(d.getDate()).padStart(2,'0')
-    ].join('-');
-
+    return [d.getFullYear(), String(d.getMonth()+1).padStart(2,'0'), String(d.getDate()).padStart(2,'0')].join('-');
 }
-
-
-/* =========================================================
-   BALANCE
-========================================================= */
 
 function updateBalance(){
-
-    document.getElementById('coinBalance').textContent =
-        coins;
-
-    document.getElementById('rupeeBalance').textContent =
-        (coins/100).toFixed(2);
-
-    document.getElementById('profCoins').textContent =
-        coins;
-
-    document.getElementById('profRupees').textContent =
-        (coins/100).toFixed(2);
-
-    localStorage.setItem(
-        STORAGE.coins,
-        String(coins)
-    );
-
+    document.getElementById('coinBalance').textContent = coins;
+    document.getElementById('rupeeBalance').textContent = (coins/100).toFixed(2);
+    document.getElementById('profCoins').textContent = coins + ' Coins';
+    document.getElementById('profRupees').textContent = (coins/100).toFixed(2);
+    localStorage.setItem(STORAGE.coins, String(coins));
 }
 
-
-/* =========================================================
-   ADD COINS
-========================================================= */
-
-function addCoins(amount,title){
-
+function addCoins(amount, title){
     amount = Number(amount);
-
-    if(!Number.isFinite(amount) || amount <= 0){
-        return false;
-    }
-
+    if(!Number.isFinite(amount) || amount <= 0) return false;
     coins += Math.floor(amount);
-
-    history.unshift({
-        title:title,
-        amount:Math.floor(amount),
-        date:new Date().toLocaleString()
-    });
-
+    history.unshift({ title: title, amount: Math.floor(amount), date: new Date().toLocaleString() });
     saveHistory();
-
     updateBalance();
     renderHistory();
-
     return true;
 }
 
-
-/* =========================================================
-   SAVE HISTORY
-========================================================= */
-
 function saveHistory(){
-
-    localStorage.setItem(
-        STORAGE.history,
-        JSON.stringify(history.slice(0,100))
-    );
-
+    localStorage.setItem(STORAGE.history, JSON.stringify(history.slice(0,100)));
 }
 
-
-/* =========================================================
-   HISTORY
-========================================================= */
-
 function renderHistory(){
-
-    const list =
-        document.getElementById('historyList');
-
+    const list = document.getElementById('historyList');
     if(!list) return;
-
-    list.innerHTML='';
-
-    if(history.length===0){
-
-        list.innerHTML =
-            '<p class="muted">No history yet.</p>';
-
+    list.innerHTML = '';
+    if(history.length === 0){
+        list.innerHTML = '<p class="muted">No history yet.</p>';
         return;
     }
-
     history.forEach(function(item){
-
-        const row =
-            document.createElement('div');
-
-        row.className='history-item';
-
-        const left =
-            document.createElement('div');
-
-        const title =
-            document.createElement('strong');
-
-        title.textContent =
-            item.title || 'Transaction';
-
-        const date =
-            document.createElement('small');
-
-        date.style.color='#64748b';
-        date.textContent =
-            item.date || '';
-
+        const row = document.createElement('div');
+        row.className = 'history-item';
+        const left = document.createElement('div');
+        const title = document.createElement('strong');
+        title.textContent = item.title || 'Transaction';
+        const date = document.createElement('small');
+        date.style.color = '#64748b';
+        date.textContent = item.date || '';
         left.appendChild(title);
         left.appendChild(document.createElement('br'));
         left.appendChild(date);
-
-        const amount =
-            document.createElement('div');
-
+        const amount = document.createElement('div');
         if(Number(item.amount) >= 0){
-
-            amount.className='tx-plus';
-            amount.textContent =
-                '+' + Number(item.amount) + ' Coins';
-
-        }else{
-
-            amount.className='tx-minus';
-            amount.textContent =
-                Number(item.amount) + ' Coins';
-
+            amount.className = 'tx-plus';
+            amount.textContent = '+' + Number(item.amount) + ' Coins';
+        } else {
+            amount.className = 'tx-minus';
+            amount.textContent = Number(item.amount) + ' Coins';
         }
-
         row.appendChild(left);
         row.appendChild(amount);
-
         list.appendChild(row);
-
     });
-
 }
 
+function renderWithdrawalHistory(){
+    const list = document.getElementById('withdrawalHistoryList');
+    if(!list) return;
+    list.innerHTML = '';
+    const reqs = JSON.parse(localStorage.getItem(STORAGE.withdrawals) || '[]');
+    if(reqs.length === 0){
+        list.innerHTML = '<p class="muted">Koi purani withdrawal request nahi hai.</p>';
+        return;
+    }
+    reqs.forEach(function(item){
+        const row = document.createElement('div');
+        row.className = 'history-item';
+        row.innerHTML = `<div><strong>${item.method} (${item.address})</strong><br><small style="color:#64748b;">${item.date}</small></div><div class="tx-minus">-500 Coins (${item.status})</div>`;
+        list.appendChild(row);
+    });
+}
 
-/* =========================================================
-   TAB SYSTEM - FIXED
-========================================================= */
-
-function switchTab(tabId,button){
-
-    document
-        .querySelectorAll('.tab-content')
-        .forEach(function(el){
-
-            el.classList.add('hidden');
-
-        });
-
-    const tab =
-        document.getElementById(tabId);
-
+/* TAB SYSTEM */
+function switchTab(tabId, button){
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+    const tab = document.getElementById(tabId);
     if(!tab) return;
-
     tab.classList.remove('hidden');
-
-    document
-        .querySelectorAll('.tab-btn')
-        .forEach(function(btn){
-
-            btn.classList.remove('active');
-
-        });
-
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
     if(button){
-
         button.classList.add('active');
-
-    }else{
-
-        const matching =
-            document.querySelector(
-                `.tab-btn[data-tab="${tabId}"]`
-            );
-
-        if(matching){
-            matching.classList.add('active');
-        }
-
+    } else {
+        const matching = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
+        if(matching) matching.classList.add('active');
     }
-
 }
 
-
-/* =========================================================
-   TASK LOCK
-========================================================= */
-
+/* TASK LOCK */
 function taskAlreadyDone(key){
-
-    return localStorage.getItem(
-        'task_' + key + '_' + todayKey()
-    ) === '1';
-
+    return localStorage.getItem('task_' + key + '_' + todayKey()) === '1';
 }
-
 function markTaskDone(key){
-
-    localStorage.setItem(
-        'task_' + key + '_' + todayKey(),
-        '1'
-    );
-
+    localStorage.setItem('task_' + key + '_' + todayKey(), '1');
 }
 
-
-/* =========================================================
-   DAILY BONUS
-========================================================= */
-
+/* TASKS */
 function claimDailyCheckin(){
-
-    if(taskAlreadyDone('daily')){
-
-        alert('Aaj ka Daily Bonus already claim ho chuka hai.');
-
-        return;
-    }
-
-    addCoins(50,'Daily Streak Bonus');
-
+    if(taskAlreadyDone('daily')){ alert('Aaj ka Daily Bonus already claim ho chuka hai.'); return; }
+    addCoins(50, 'Daily Streak Bonus');
     markTaskDone('daily');
-
     alert('🎉 +50 Coins added!');
-
 }
 
-
-/* =========================================================
-   LINK TASK
-========================================================= */
-
-function openLinkTask(url,reward,taskName,button){
-
-    const key =
-        'link_' + btoa(url).replace(/=/g,'').substring(0,12);
-
-    if(taskAlreadyDone(key)){
-
-        alert('Ye task aaj already complete ho chuka hai.');
-
-        return;
-    }
-
-    const original =
-        button.textContent;
-
-    button.disabled=true;
-
-    window.open(url,'_blank','noopener,noreferrer');
-
-    let seconds=15;
-
-    button.textContent =
-        `Wait ${seconds}s`;
-
-    const timer =
-        setInterval(function(){
-
-            seconds--;
-
-            button.textContent =
-                `Wait ${seconds}s`;
-
-            if(seconds <= 0){
-
-                clearInterval(timer);
-
-                button.disabled=false;
-                button.textContent=original;
-
-                markTaskDone(key);
-
-                addCoins(
-                    reward,
-                    taskName
-                );
-
-                alert(
-                    `🎉 +${reward} Coins added!`
-                );
-
-            }
-
-        },1000);
-
+function openLinkTask(url, reward, taskName, button){
+    const key = 'link_' + btoa(url).replace(/=/g,'').substring(0,12);
+    if(taskAlreadyDone(key)){ alert('Ye task aaj already complete ho chuka hai.'); return; }
+    const original = button.textContent;
+    button.disabled = true;
+    window.open(url, '_blank', 'noopener,noreferrer');
+    let seconds = 15;
+    button.textContent = `Wait ${seconds}s`;
+    const timer = setInterval(function(){
+        seconds--;
+        button.textContent = `Wait ${seconds}s`;
+        if(seconds <= 0){
+            clearInterval(timer);
+            button.disabled = false;
+            button.textContent = original;
+            markTaskDone(key);
+            addCoins(reward, taskName);
+            alert(`🎉 +${reward} Coins added!`);
+        }
+    }, 1000);
 }
-
-
-/* =========================================================
-   MATH QUIZ
-========================================================= */
 
 function mathQuizTask(){
-
-    if(taskAlreadyDone('math')){
-
-        alert('Math Quiz aaj already complete ho chuka hai.');
-
-        return;
-    }
-
-    const a =
-        Math.floor(Math.random()*20)+5;
-
-    const b =
-        Math.floor(Math.random()*20)+5;
-
-    const answer =
-        prompt(`${a} + ${b} = ?`);
-
+    if(taskAlreadyDone('math')){ alert('Math Quiz aaj already complete ho chuka hai.'); return; }
+    const a = Math.floor(Math.random()*20)+5;
+    const b = Math.floor(Math.random()*20)+5;
+    const answer = prompt(`${a} + ${b} = ?`);
     if(answer === null) return;
-
     if(Number(answer) === a+b){
-
         markTaskDone('math');
-
-        addCoins(20,'Math Quiz Bonus');
-
+        addCoins(20, 'Math Quiz Bonus');
         alert('✅ Correct! +20 Coins');
-
-    }else{
-
-        alert('❌ Wrong answer.');
-
-    }
-
+    } else { alert('❌ Wrong answer.'); }
 }
-
-
-/* =========================================================
-   SURVEY
-========================================================= */
 
 function surveyTask(){
-
-    if(taskAlreadyDone('survey')){
-
-        alert('Aaj ka survey already complete ho chuka hai.');
-
-        return;
-    }
-
-    const answer =
-        prompt(
-            'TaskEarn ko 1-5 rating dein:'
-        );
-
+    if(taskAlreadyDone('survey')){ alert('Aaj ka survey already complete ho chuka hai.'); return; }
+    const answer = prompt('TaskEarn ko 1-5 rating dein:');
     if(answer === null) return;
-
-    const rating =
-        Number(answer);
-
+    const rating = Number(answer);
     if(rating>=1 && rating<=5){
-
         markTaskDone('survey');
-
-        addCoins(100,'Feedback Survey');
-
+        addCoins(100, 'Feedback Survey');
         alert('🎉 Survey complete! +100 Coins');
-
-    }else{
-
-        alert('Please 1 se 5 ke beech rating dein.');
-
-    }
-
+    } else { alert('Please 1 se 5 ke beech rating dein.'); }
 }
-
-
-/* =========================================================
-   CAPTCHA
-========================================================= */
 
 function captchaTask(){
-
-    if(taskAlreadyDone('captcha')){
-
-        alert('Captcha task aaj already complete ho chuka hai.');
-
-        return;
-    }
-
-    const code =
-        Math.floor(1000 + Math.random()*9000);
-
-    const answer =
-        prompt(`Captcha: ${code}`);
-
+    if(taskAlreadyDone('captcha')){ alert('Captcha task aaj already complete ho chuka hai.'); return; }
+    const code = Math.floor(1000 + Math.random()*9000);
+    const answer = prompt(`Captcha Code Enter Karein: ${code}`);
     if(answer === null) return;
-
     if(String(answer).trim() === String(code)){
-
         markTaskDone('captcha');
-
-        addCoins(25,'Captcha Bonus');
-
+        addCoins(25, 'Captcha Bonus');
         alert('✅ Captcha correct! +25 Coins');
-
-    }else{
-
-        alert('❌ Wrong captcha.');
-
-    }
-
+    } else { alert('❌ Wrong captcha.'); }
 }
 
-
-/* =========================================================
-   SCRATCH CARD
-========================================================= */
-
-let scratchCoins=0;
-let scratchCompleted=false;
-let scratchDrawing=false;
-let scratchMoveCounter=0;
-
+/* SCRATCH CARD */
+let scratchCoins=0, scratchCompleted=false, scratchDrawing=false, scratchMoveCounter=0;
 function scratchTask(){
-
-    if(taskAlreadyDone('scratch')){
-
-        alert('Aaj ka Scratch Card already use ho chuka hai.');
-
-        return;
-    }
-
-    scratchCoins =
-        Math.floor(Math.random()*81)+20;
-
-    scratchCompleted=false;
-    scratchMoveCounter=0;
-
-    document.getElementById('prizeAmount')
-        .textContent=scratchCoins;
-
-    document
-        .getElementById('scratchModal')
-        .classList.remove('hidden');
-
+    if(taskAlreadyDone('scratch')){ alert('Aaj ka Scratch Card already use ho chuka hai.'); return; }
+    scratchCoins = Math.floor(Math.random()*81)+20;
+    scratchCompleted = false; scratchMoveCounter = 0;
+    document.getElementById('prizeAmount').textContent = scratchCoins;
+    document.getElementById('scratchModal').classList.remove('hidden');
     setupScratchCanvas();
-
 }
-
 
 function setupScratchCanvas(){
+    const canvas = document.getElementById('scratchCanvas');
+    const ctx = canvas.getContext('2d');
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.fillStyle = '#94a3b8';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#fff'; ctx.font = 'bold 16px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText('Scratch Here!', canvas.width/2, canvas.height/2);
 
-    const canvas =
-        document.getElementById('scratchCanvas');
-
-    const ctx =
-        canvas.getContext('2d');
-
-    ctx.globalCompositeOperation='source-over';
-
-    ctx.fillStyle='#94a3b8';
-    ctx.fillRect(
-        0,0,
-        canvas.width,
-        canvas.height
-    );
-
-    ctx.fillStyle='#fff';
-    ctx.font='bold 16px sans-serif';
-    ctx.textAlign='center';
-
-    ctx.fillText(
-        'Scratch Here!',
-        canvas.width/2,
-        canvas.height/2
-    );
-
-    canvas.onpointerdown=function(e){
-
-        scratchDrawing=true;
-
-        canvas.setPointerCapture(e.pointerId);
-
-        scratchAt(e);
-
-    };
-
-    canvas.onpointermove=function(e){
-
-        if(!scratchDrawing) return;
-
-        scratchAt(e);
-
-    };
-
-    canvas.onpointerup=function(){
-
-        scratchDrawing=false;
-
-    };
-
-    canvas.onpointercancel=function(){
-
-        scratchDrawing=false;
-
-    };
-
+    canvas.onpointerdown = function(e){ scratchDrawing = true; canvas.setPointerCapture(e.pointerId); scratchAt(e); };
+    canvas.onpointermove = function(e){ if(!scratchDrawing) return; scratchAt(e); };
+    canvas.onpointerup = function(){ scratchDrawing = false; };
+    canvas.onpointercancel = function(){ scratchDrawing = false; };
 }
-
 
 function scratchAt(e){
-
     if(scratchCompleted) return;
+    const canvas = document.getElementById('scratchCanvas');
+    const ctx = canvas.getContext('2d');
+    const rect = canvas.getBoundingClientRect();
+    const x = (e.clientX - rect.left) * (canvas.width/rect.width);
+    const y = (e.clientY - rect.top) * (canvas.height/rect.height);
 
-    const canvas =
-        document.getElementById('scratchCanvas');
-
-    const ctx =
-        canvas.getContext('2d');
-
-    const rect =
-        canvas.getBoundingClientRect();
-
-    const scaleX =
-        canvas.width/rect.width;
-
-    const scaleY =
-        canvas.height/rect.height;
-
-    const x =
-        (e.clientX-rect.left)*scaleX;
-
-    const y =
-        (e.clientY-rect.top)*scaleY;
-
-    ctx.globalCompositeOperation='destination-out';
-
-    ctx.beginPath();
-
-    ctx.arc(
-        x,
-        y,
-        20,
-        0,
-        Math.PI*2
-    );
-
-    ctx.fill();
-
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.beginPath(); ctx.arc(x, y, 20, 0, Math.PI*2); ctx.fill();
     scratchMoveCounter++;
-
-    if(scratchMoveCounter % 8 === 0){
-
-        checkScratchPercent();
-
-    }
-
+    if(scratchMoveCounter % 8 === 0) checkScratchPercent();
 }
-
 
 function checkScratchPercent(){
-
     if(scratchCompleted) return;
-
-    const canvas =
-        document.getElementById('scratchCanvas');
-
-    const ctx =
-        canvas.getContext('2d');
-
-    const data =
-        ctx.getImageData(
-            0,0,
-            canvas.width,
-            canvas.height
-        ).data;
-
-    let transparent=0;
-
-    for(
-        let i=3;
-        i<data.length;
-        i+=4
-    ){
-
-        if(data[i] < 30){
-            transparent++;
-        }
-
-    }
-
-    const percent =
-        transparent /
-        (canvas.width*canvas.height);
-
-    if(percent >= .45){
-
-        scratchCompleted=true;
-
-        ctx.clearRect(
-            0,0,
-            canvas.width,
-            canvas.height
-        );
-
+    const canvas = document.getElementById('scratchCanvas');
+    const ctx = canvas.getContext('2d');
+    const data = ctx.getImageData(0,0,canvas.width,canvas.height).data;
+    let transparent = 0;
+    for(let i=3; i<data.length; i+=4){ if(data[i] < 30) transparent++; }
+    if(transparent / (canvas.width*canvas.height) >= 0.45){
+        scratchCompleted = true;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         markTaskDone('scratch');
-
-        addCoins(
-            scratchCoins,
-            'Scratch Card Bonus'
-        );
-
-        alert(
-            `🎉 You won ${scratchCoins} Coins!`
-        );
-
+        addCoins(scratchCoins, 'Scratch Card Bonus');
+        alert(`🎉 You won ${scratchCoins} Coins!`);
     }
-
 }
+function closeScratchModal(){ document.getElementById('scratchModal').classList.add('hidden'); }
 
-
-function closeScratchModal(){
-
-    document
-        .getElementById('scratchModal')
-        .classList.add('hidden');
-
-}
-
-
-/* =========================================================
-   REFERRAL
-========================================================= */
-
+/* REFERRAL */
 function setupReferralLink(){
-
-    const base =
-        window.location.origin +
-        window.location.pathname;
-
-    const link =
-        base + '?ref=' + encodeURIComponent(userId);
-
-    document.getElementById('refLinkInput')
-        .value=link;
-
+    const link = window.location.origin + window.location.pathname + '?ref=' + encodeURIComponent(userId);
+    document.getElementById('refLinkInput').value = link;
 }
-
-
 async function copyReferralLink(){
-
-    const input =
-        document.getElementById('refLinkInput');
-
-    try{
-
-        await navigator.clipboard.writeText(
-            input.value
-        );
-
-        alert('✅ Referral link copied!');
-
-    }catch(e){
-
-        input.select();
-
-        document.execCommand('copy');
-
-        alert('✅ Referral link copied!');
-
-    }
-
+    const input = document.getElementById('refLinkInput');
+    try { await navigator.clipboard.writeText(input.value); alert('✅ Referral link copied!'); }
+    catch(e){ input.select(); document.execCommand('copy'); alert('✅ Referral link copied!'); }
 }
-
-
 function shareWhatsApp(){
-
-    const link =
-        document.getElementById('refLinkInput').value;
-
-    const text =
-        'TaskEarn join karo aur coins earn karo! ' +
-        link;
-
-    window.open(
-        'https://api.whatsapp.com/send?text=' +
-        encodeURIComponent(text),
-        '_blank'
-    );
-
+    const link = document.getElementById('refLinkInput').value;
+    window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent('TaskEarn join karo aur coins earn karo! ' + link), '_blank');
 }
-
-
 function shareTelegram(){
-
-    const link =
-        document.getElementById('refLinkInput').value;
-
-    window.open(
-        'https://t.me/share/url?url=' +
-        encodeURIComponent(link) +
-        '&text=' +
-        encodeURIComponent(
-            'TaskEarn join karo aur coins earn karo!'
-        ),
-        '_blank'
-    );
-
+    const link = document.getElementById('refLinkInput').value;
+    window.open('https://t.me/share/url?url=' + encodeURIComponent(link) + '&text=' + encodeURIComponent('TaskEarn join karo!'), '_blank');
 }
 
-
-/* =========================================================
-   SPIN WHEEL
-========================================================= */
-
-const wheelRewards =
-    [10,50,0,100,20,5,200,0];
-
-const wheelColors =
-    [
-        '#f59e0b',
-        '#ef4444',
-        '#64748b',
-        '#3b82f6',
-        '#8b5cf6',
-        '#06b6d4',
-        '#10b981',
-        '#d97706'
-    ];
-
-let wheelRotation=0;
-let spinning=false;
-
+/* SPIN WHEEL */
+const wheelRewards = [10,50,0,100,20,5,200,0];
+const wheelColors = ['#f59e0b','#ef4444','#64748b','#3b82f6','#8b5cf6','#06b6d4','#10b981','#d97706'];
+let wheelRotation=0, spinning=false;
 
 function drawWheel(){
-
-    const canvas =
-        document.getElementById('wheelCanvas');
-
+    const canvas = document.getElementById('wheelCanvas');
     if(!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const center = canvas.width/2, radius = center-2, arc = (Math.PI*2)/wheelRewards.length;
+    ctx.clearRect(0,0,canvas.width,canvas.height);
 
-    const ctx =
-        canvas.getContext('2d');
+    for(let i=0; i<wheelRewards.length; i++){
+        const start = i*arc, end = start+arc;
+        ctx.beginPath(); ctx.moveTo(center,center); ctx.arc(center,center,radius,start,end); ctx.closePath();
+        ctx.fillStyle = wheelColors[i]; ctx.fill();
 
-    const center =
-        canvas.width/2;
-
-    const radius =
-        center-2;
-
-    const arc =
-        (Math.PI*2)/wheelRewards.length;
-
-    ctx.clearRect(
-        0,0,
-        canvas.width,
-        canvas.height
-    );
-
-    for(
-        let i=0;
-        i<wheelRewards.length;
-        i++
-    ){
-
-        const start =
-            i*arc;
-
-        const end =
-            start+arc;
-
-        ctx.beginPath();
-
-        ctx.moveTo(
-            center,
-            center
-        );
-
-        ctx.arc(
-            center,
-            center,
-            radius,
-            start,
-            end
-        );
-
-        ctx.closePath();
-
-        ctx.fillStyle =
-            wheelColors[i];
-
-        ctx.fill();
-
-        ctx.save();
-
-        ctx.translate(
-            center,
-            center
-        );
-
-        ctx.rotate(
-            start+arc/2
-        );
-
-        ctx.fillStyle='#fff';
-        ctx.font='bold 16px sans-serif';
-        ctx.textAlign='center';
-        ctx.textBaseline='middle';
-
-        ctx.fillText(
-            wheelRewards[i] + ' C',
-            radius*.62,
-            0
-        );
-
+        ctx.save(); ctx.translate(center,center); ctx.rotate(start+arc/2);
+        ctx.fillStyle='#fff'; ctx.font='bold 16px sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
+        ctx.fillText(wheelRewards[i] + ' C', radius*.62, 0);
         ctx.restore();
-
     }
-
-    ctx.beginPath();
-
-    ctx.arc(
-        center,
-        center,
-        28,
-        0,
-        Math.PI*2
-    );
-
-    ctx.fillStyle='#fff';
-    ctx.fill();
-
-    ctx.strokeStyle='#10b981';
-    ctx.lineWidth=5;
-    ctx.stroke();
-
+    ctx.beginPath(); ctx.arc(center,center,28,0,Math.PI*2); ctx.fillStyle='#fff'; ctx.fill();
+    ctx.strokeStyle='#10b981'; ctx.lineWidth=5; ctx.stroke();
 }
-
 
 function spinWheel(){
-
     if(spinning) return;
-
     if(taskAlreadyDone('spin')){
-
-        document.getElementById('spinStatus')
-            .textContent='Come back tomorrow';
-
+        document.getElementById('spinStatus').textContent = 'Come back tomorrow';
         alert('🎰 Aaj ka spin already use ho chuka hai.');
-
         return;
     }
+    spinning = true;
+    const button = document.getElementById('spinBtn');
+    button.disabled = true; button.textContent = 'Spinning...';
 
-    spinning=true;
+    const container = document.getElementById('wheelContainer');
+    const selectedIndex = Math.floor(Math.random()*wheelRewards.length);
+    const reward = wheelRewards[selectedIndex];
+    const segmentAngle = 360/wheelRewards.length;
+    const targetAngle = 360 - (selectedIndex*segmentAngle + segmentAngle/2);
 
-    const button =
-        document.getElementById('spinBtn');
-
-    button.disabled=true;
-    button.textContent='Spinning...';
-
-    const container =
-        document.getElementById('wheelContainer');
-
-    const selectedIndex =
-        Math.floor(
-            Math.random()*wheelRewards.length
-        );
-
-    const reward =
-        wheelRewards[selectedIndex];
-
-    const segmentAngle =
-        360/wheelRewards.length;
-
-    /*
-      Pointer top par hai.
-      Selected segment ko pointer ke neeche
-      lane ke liye calculated rotation.
-    */
-
-    const selectedCenter =
-        selectedIndex*segmentAngle +
-        segmentAngle/2;
-
-    const targetAngle =
-        360-selectedCenter;
-
-    const extraSpins =
-        360*5;
-
-    wheelRotation +=
-        extraSpins +
-        targetAngle -
-        (wheelRotation%360);
-
-    container.style.transform =
-        `rotate(${wheelRotation}deg)`;
+    wheelRotation += (360*5) + targetAngle - (wheelRotation%360);
+    container.style.transform = `rotate(${wheelRotation}deg)`;
 
     setTimeout(function(){
-
-        spinning=false;
-
-        button.disabled=false;
-        button.textContent='Spin Now';
-
+        spinning = false; button.disabled = false; button.textContent = 'Spin Now';
         markTaskDone('spin');
-
-        if(reward>0){
-
-            addCoins(
-                reward,
-                'Spin Wheel Prize'
-            );
-
-            alert(
-                `🎉 Lucky Spin! You won ${reward} Coins!`
-            );
-
-        }else{
-
-            addHistoryOnly(
-                'Spin Wheel - No Prize',
-                0
-            );
-
-            alert(
-                '🙂 Better luck next time!'
-            );
-
+        if(reward > 0){
+            addCoins(reward, 'Spin Wheel Prize');
+            alert(`🎉 Lucky Spin! You won ${reward} Coins!`);
+        } else {
+            addHistoryOnly('Spin Wheel - No Prize', 0);
+            alert('🙂 Better luck next time!');
         }
-
-        document.getElementById('spinStatus')
-            .textContent='Used today';
-
-    },4200);
-
+        document.getElementById('spinStatus').textContent = 'Used today';
+    }, 4200);
 }
 
-
-function addHistoryOnly(title,amount){
-
-    history.unshift({
-        title:title,
-        amount:amount,
-        date:new Date().toLocaleString()
-    });
-
-    saveHistory();
-    renderHistory();
-
+function addHistoryOnly(title, amount){
+    history.unshift({ title:title, amount:amount, date:new Date().toLocaleString() });
+    saveHistory(); renderHistory();
 }
 
-
-/* =========================================================
-   TAP GAME
-========================================================= */
-
-let tapRunning=false;
-let tapCount=0;
-let tapTimer=null;
-
+/* GAMES */
 function openGame(id){
-
-    document
-        .getElementById(id)
-        .classList.remove('hidden');
-
-    if(id==='memoryGame'){
-        startMemoryGame();
-    }
-
+    document.getElementById(id).classList.remove('hidden');
+    if(id==='memoryGame') startMemoryGame();
 }
-
-
 function closeGame(id){
-
-    document
-        .getElementById(id)
-        .classList.add('hidden');
-
-    if(id==='tapGame' && tapTimer){
-
-        clearInterval(tapTimer);
-        tapTimer=null;
-        tapRunning=false;
-
-    }
-
+    document.getElementById(id).classList.add('hidden');
 }
 
-
+/* TAP GAME */
+let tapRunning=false, tapCount=0, tapTimer=null;
 function startTapGame(){
-
-    if(taskAlreadyDone('game_tap')){
-
-        alert('Tap Challenge aaj already complete ho chuka hai.');
-
-        return;
-    }
-
-    tapCount=0;
-    tapRunning=true;
-
-    document.getElementById('tapCount')
-        .textContent='0';
-
-    document.getElementById('tapTime')
-        .textContent='10';
-
-    const button =
-        document.getElementById('tapButton');
-
-    button.disabled=false;
-
-    document.getElementById('tapStartBtn')
-        .disabled=true;
+    if(taskAlreadyDone('game_tap')){ alert('Tap Challenge aaj already complete ho chuka hai.'); return; }
+    tapCount=0; tapRunning=true;
+    document.getElementById('tapCount').textContent='0';
+    document.getElementById('tapTime').textContent='10';
+    document.getElementById('tapButton').disabled=false;
+    document.getElementById('tapStartBtn').disabled=true;
 
     let time=10;
-
-    tapTimer =
-        setInterval(function(){
-
-            time--;
-
-            document.getElementById('tapTime')
-                .textContent=time;
-
-            if(time<=0){
-
-                clearInterval(tapTimer);
-
-                tapTimer=null;
-                tapRunning=false;
-
-                button.disabled=true;
-
-                document.getElementById('tapStartBtn')
-                    .disabled=false;
-
-                const reward =
-                    Math.min(
-                        30,
-                        Math.max(
-                            5,
-                            Math.floor(tapCount/3)
-                        )
-                    );
-
-                markTaskDone('game_tap');
-
-                addCoins(
-                    reward,
-                    'Tap Challenge'
-                );
-
-                alert(
-                    `⚡ ${tapCount} taps! +${reward} Coins`
-                );
-
-            }
-
-        },1000);
-
-}
-
-
-function tapGameClick(){
-
-    if(!tapRunning) return;
-
-    tapCount++;
-
-    document.getElementById('tapCount')
-        .textContent=tapCount;
-
-}
-
-
-/* =========================================================
-   REACTION GAME
-========================================================= */
-
-let reactionState='idle';
-let reactionStartTime=0;
-let reactionTimeout=null;
-
-
-function startReactionGame(){
-
-    if(taskAlreadyDone('game_reaction')){
-
-        alert('Reaction Test aaj already complete ho chuka hai.');
-
-        return;
-    }
-
-    const box =
-        document.getElementById('reactionBox');
-
-    const startButton =
-        document.getElementById('reactionStart');
-
-    reactionState='waiting';
-
-    box.classList.remove('ready');
-
-    box.textContent='Wait...';
-
-    startButton.disabled=true;
-
-    const delay =
-        1500+
-        Math.floor(
-            Math.random()*3000
-        );
-
-    reactionTimeout =
-        setTimeout(function(){
-
-            reactionState='ready';
-
-            reactionStartTime=
-                performance.now();
-
-            box.classList.add('ready');
-
-            box.textContent='TAP NOW!';
-
-        },delay);
-
-}
-
-
-function reactionClick(){
-
-    const box =
-        document.getElementById('reactionBox');
-
-    const startButton =
-        document.getElementById('reactionStart');
-
-    if(reactionState==='waiting'){
-
-        if(reactionTimeout){
-            clearTimeout(reactionTimeout);
+    tapTimer = setInterval(function(){
+        time--;
+        document.getElementById('tapTime').textContent=time;
+        if(time<=0){
+            clearInterval(tapTimer); tapTimer=null; tapRunning=false;
+            document.getElementById('tapButton').disabled=true;
+            document.getElementById('tapStartBtn').disabled=false;
+            const reward = Math.min(30, Math.max(5, Math.floor(tapCount/3)));
+            markTaskDone('game_tap');
+            addCoins(reward, 'Tap Challenge');
+            alert(`⚡ ${tapCount} taps! +${reward} Coins`);
         }
+    },1000);
+}
+function tapGameClick(){ if(tapRunning){ tapCount++; document.getElementById('tapCount').textContent = tapCount; } }
 
-        reactionState='idle';
+/* REACTION GAME */
+let reactionState='idle', reactionStartTime=0, reactionTimeout=null;
+function startReactionGame(){
+    if(taskAlreadyDone('game_reaction')){ alert('Reaction Test aaj already complete ho chuka hai.'); return; }
+    const box = document.getElementById('reactionBox');
+    reactionState='waiting'; box.classList.remove('ready'); box.textContent='Wait...';
+    document.getElementById('reactionStart').disabled=true;
 
-        box.classList.remove('ready');
-
-        box.textContent='Too Early!';
-
-        startButton.disabled=false;
-
-        document.getElementById('reactionResult')
-            .textContent='Too early';
-
+    reactionTimeout = setTimeout(function(){
+        reactionState='ready'; reactionStartTime = performance.now();
+        box.classList.add('ready'); box.textContent='TAP NOW!';
+    }, 1500 + Math.random()*3000);
+}
+function reactionClick(){
+    const box = document.getElementById('reactionBox');
+    if(reactionState==='waiting'){
+        clearTimeout(reactionTimeout); reactionState='idle';
+        box.textContent='Too Early!'; document.getElementById('reactionStart').disabled=false;
+        document.getElementById('reactionResult').textContent='Too early';
         return;
     }
+    if(reactionState!=='ready') return;
+    const elapsed = Math.round(performance.now()-reactionStartTime);
+    reactionState='idle'; box.classList.remove('ready'); box.textContent='Great!';
+    document.getElementById('reactionStart').disabled=false;
+    document.getElementById('reactionResult').textContent = elapsed + ' ms';
 
-    if(reactionState!=='ready'){
-        return;
-    }
-
-    const elapsed =
-        Math.round(
-            performance.now()-
-            reactionStartTime
-        );
-
-    reactionState='idle';
-
-    box.classList.remove('ready');
-
-    box.textContent='Great!';
-
-    startButton.disabled=false;
-
-    document.getElementById('reactionResult')
-        .textContent=elapsed+' ms';
-
-    let reward=5;
-
-    if(elapsed<250){
-        reward=25;
-    }else if(elapsed<400){
-        reward=20;
-    }else if(elapsed<600){
-        reward=15;
-    }else{
-        reward=10;
-    }
-
+    let reward = elapsed<250?25 : elapsed<400?20 : elapsed<600?15:10;
     markTaskDone('game_reaction');
-
-    addCoins(
-        reward,
-        'Reaction Test'
-    );
-
-    alert(
-        `⚡ Reaction: ${elapsed}ms\n+${reward} Coins`
-    );
-
+    addCoins(reward, 'Reaction Test');
+    alert(`⚡ Reaction: ${elapsed}ms\n+${reward} Coins`);
 }
 
-
-/* =========================================================
-   MEMORY GAME
-========================================================= */
-
-const memoryEmojis=[
-    '🍎','🍎',
-    '🚀','🚀',
-    '⭐','⭐',
-    '🎮','🎮',
-    '💎','💎',
-    '🔥','🔥',
-    '🎁','🎁',
-    '⚡','⚡'
-];
-
-let memoryFirst=null;
-let memorySecond=null;
-let memoryLock=false;
-let memoryMatched=0;
-let memoryMoves=0;
-
+/* MEMORY GAME */
+const memoryEmojis=['🍎','🍎','🚀','🚀','⭐','⭐','🎮','🎮','💎','💎','🔥','🔥','🎁','🎁','⚡','⚡'];
+let memoryFirst=null, memorySecond=null, memoryLock=false, memoryMatched=0, memoryMoves=0;
 
 function shuffle(array){
-
-    const arr=[...array];
-
-    for(
-        let i=arr.length-1;
-        i>0;
-        i--
-    ){
-
-        const j=
-            Math.floor(
-                Math.random()*(i+1)
-            );
-
-        [
-            arr[i],
-            arr[j]
-        ]=[
-            arr[j],
-            arr[i]
-        ];
-
+    let arr=[...array];
+    for(let i=arr.length-1; i>0; i--){
+        const j = Math.floor(Math.random()*(i+1));
+        [arr[i],arr[j]] = [arr[j],arr[i]];
     }
-
     return arr;
-
 }
-
-
 function startMemoryGame(){
+    const grid = document.getElementById('memoryGrid');
+    grid.innerHTML=''; memoryFirst=null; memorySecond=null; memoryLock=false; memoryMatched=0; memoryMoves=0;
+    document.getElementById('memoryMoves').textContent='0';
 
-    const grid =
-        document.getElementById('memoryGrid');
-
-    grid.innerHTML='';
-
-    memoryFirst=null;
-    memorySecond=null;
-    memoryLock=false;
-    memoryMatched=0;
-    memoryMoves=0;
-
-    document.getElementById('memoryMoves')
-        .textContent='0';
-
-    const shuffled =
-        shuffle(memoryEmojis);
-
-    shuffled.forEach(function(emoji,index){
-
-        const card =
-            document.createElement('button');
-
-        card.className='memory-card';
-
-        card.dataset.emoji=emoji;
-        card.dataset.index=index;
-
-        card.textContent=emoji;
-
-        card.addEventListener(
-            'click',
-            function(){
-
-                memoryCardClick(card);
-
-            }
-        );
-
+    shuffle(memoryEmojis).forEach(function(emoji,index){
+        const card = document.createElement('button');
+        card.className='memory-card'; card.dataset.emoji=emoji; card.textContent=emoji;
+        card.addEventListener('click', function(){ memoryCardClick(card); });
         grid.appendChild(card);
-
     });
-
 }
-
-
 function memoryCardClick(card){
-
-    if(memoryLock) return;
-
-    if(card.classList.contains('flipped') ||
-       card.classList.contains('matched')){
-        return;
-    }
-
+    if(memoryLock || card.classList.contains('flipped') || card.classList.contains('matched')) return;
     card.classList.add('flipped');
+    if(!memoryFirst){ memoryFirst = card; return; }
+    memorySecond = card; memoryMoves++;
+    document.getElementById('memoryMoves').textContent = memoryMoves;
 
-    if(!memoryFirst){
-
-        memoryFirst=card;
-
-        return;
-    }
-
-    memorySecond=card;
-    memoryMoves++;
-
-    document.getElementById('memoryMoves')
-        .textContent=memoryMoves;
-
-    if(
-        memoryFirst.dataset.emoji ===
-        memorySecond.dataset.emoji
-    ){
-
-        memoryFirst.classList.add('matched');
-        memorySecond.classList.add('matched');
-
-        memoryFirst=null;
-        memorySecond=null;
-
-        memoryMatched++;
-
-        if(memoryMatched ===
-           memoryEmojis.length/2){
-
-            finishMemoryGame();
-
-        }
-
-    }else{
-
-        memoryLock=true;
-
+    if(memoryFirst.dataset.emoji === memorySecond.dataset.emoji){
+        memoryFirst.classList.add('matched'); memorySecond.classList.add('matched');
+        memoryFirst=null; memorySecond=null; memoryMatched++;
+        if(memoryMatched === memoryEmojis.length/2) finishMemoryGame();
+    } else {
+        memoryLock = true;
         setTimeout(function(){
-
-            memoryFirst.classList.remove('flipped');
-            memorySecond.classList.remove('flipped');
-
-            memoryFirst=null;
-            memorySecond=null;
-
-            memoryLock=false;
-
+            memoryFirst.classList.remove('flipped'); memorySecond.classList.remove('flipped');
+            memoryFirst=null; memorySecond=null; memoryLock=false;
         },700);
-
     }
-
 }
-
-
 function finishMemoryGame(){
-
-    if(taskAlreadyDone('game_memory')){
-        return;
-    }
-
+    if(taskAlreadyDone('game_memory')) return;
     markTaskDone('game_memory');
-
-    let reward=35;
-
-    if(memoryMoves<=18){
-        reward=35;
-    }else if(memoryMoves<=25){
-        reward=30;
-    }else{
-        reward=20;
-    }
-
-    addCoins(
-        reward,
-        'Memory Match'
-    );
-
-    setTimeout(function(){
-
-        alert(
-            `🧠 Completed in ${memoryMoves} moves!\n+${reward} Coins`
-        );
-
-    },200);
-
+    let reward = memoryMoves<=18?35 : memoryMoves<=25?30:20;
+    addCoins(reward, 'Memory Match');
+    setTimeout(()=>alert(`🧠 Completed in ${memoryMoves} moves!\n+${reward} Coins`), 200);
 }
 
-
-/* =========================================================
-   WITHDRAWAL
-========================================================= */
-
+/* WITHDRAWAL WITH SAFETY CHECK */
 function requestWithdrawal(){
+    const method = document.getElementById('paymentMethod').value;
+    const address = document.getElementById('paymentAddress').value.trim();
+    const isRobotChecked = document.getElementById('robotCheck').checked;
 
-    const method =
-        document.getElementById('paymentMethod')
-            .value;
-
-    const address =
-        document.getElementById('paymentAddress')
-            .value.trim();
-
+    if(!isRobotChecked){
+        alert('Please "I am not a robot" check-box par click karein.');
+        return;
+    }
     if(!address){
-
-        alert(
-            'Please payment address enter karein.'
-        );
-
+        alert('Please payment address enter karein.');
+        return;
+    }
+    if(coins < 500){
+        alert('Minimum withdrawal 500 Coins hai.');
         return;
     }
 
-    if(coins<500){
-
-        alert(
-            'Minimum withdrawal 500 Coins hai.'
-        );
-
-        return;
-    }
-
-    if(method==='Paytm' &&
-       !/^[6-9]\d{9}$/.test(address)){
-
-        alert(
-            'Valid 10-digit mobile number enter karein.'
-        );
-
-        return;
-    }
-
-    if(method==='UPI' &&
-       !/^[^\\s@]+@[^\\s@]+$/.test(address)){
-
-        alert(
-            'Valid UPI ID enter karein.'
-        );
-
-        return;
-    }
-
-    const request={
-        id:'WD'+Date.now(),
-        method:method,
-        address:address,
-        coins:500,
-        date:new Date().toLocaleString(),
-        status:'Pending'
+    const request = {
+        id: 'WD' + Date.now(),
+        method: method,
+        address: address,
+        coins: 500,
+        date: new Date().toLocaleString(),
+        status: 'Pending'
     };
 
-    const oldRequests =
-        JSON.parse(
-            localStorage.getItem('taskEarnWithdrawals') || '[]'
-        );
-
+    const oldRequests = JSON.parse(localStorage.getItem(STORAGE.withdrawals) || '[]');
     oldRequests.unshift(request);
+    localStorage.setItem(STORAGE.withdrawals, JSON.stringify(oldRequests));
 
-    localStorage.setItem(
-        'taskEarnWithdrawals',
-        JSON.stringify(oldRequests)
-    );
-
-    coins-=500;
-
-    history.unshift({
-        title:
-            'Withdrawal Request - '+
-            method+
-            ' - Pending',
-        amount:-500,
-        date:new Date().toLocaleString()
-    });
+    coins -= 500;
+    history.unshift({ title: 'Withdrawal Request - ' + method, amount: -500, date: new Date().toLocaleString() });
 
     saveHistory();
     updateBalance();
     renderHistory();
+    renderWithdrawalHistory();
 
-    document.getElementById('paymentAddress')
-        .value='';
+    document.getElementById('paymentAddress').value = '';
+    document.getElementById('robotCheck').checked = false;
 
-    alert(
-        '✅ Withdrawal request recorded.\n\n' +
-        'Request ID: '+request.id+
-        '\nStatus: Pending'
-    );
-
+    alert('✅ Withdrawal request recorded!\n\nRequest ID: ' + request.id + '\nStatus: Pending');
 }
 
+/* PROFILE DETAILS SAVING */
+function loadProfileDetails(){
+    document.getElementById('profUserId').textContent = userId;
+    const profile = JSON.parse(localStorage.getItem(STORAGE.profile) || '{}');
+    if(profile.name) document.getElementById('profUserName').value = profile.name;
+    if(profile.contact) document.getElementById('profUserContact').value = profile.contact;
+}
 
-/* =========================================================
-   RESET
-========================================================= */
+function saveProfileDetails(){
+    const name = document.getElementById('profUserName').value.trim();
+    const contact = document.getElementById('profUserContact').value.trim();
+    localStorage.setItem(STORAGE.profile, JSON.stringify({ name: name, contact: contact }));
+    alert('✅ Profile details saved!');
+}
 
+/* FLOATING CHAT WIDGET LOGIC */
+function toggleChatWindow(){
+    const win = document.getElementById('chatWindow');
+    win.classList.toggle('hidden');
+}
+
+function handleChatKeyPress(e){
+    if(e.key === 'Enter') sendChatMessage();
+}
+
+function sendChatMessage(){
+    const input = document.getElementById('chatInput');
+    const msg = input.value.trim();
+    if(!msg) return;
+
+    const chatBox = document.getElementById('chatMessages');
+
+    const userMsgDiv = document.createElement('div');
+    userMsgDiv.className = 'msg-user';
+    userMsgDiv.textContent = msg;
+    chatBox.appendChild(userMsgDiv);
+
+    input.value = '';
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+    setTimeout(function(){
+        const botMsgDiv = document.createElement('div');
+        botMsgDiv.className = 'msg-bot';
+
+        const lower = msg.toLowerCase();
+        if(lower.includes('withdraw') || lower.includes('paisa') || lower.includes('payment')){
+            botMsgDiv.textContent = 'Withdrawal ke liye "Withdraw" tab par jayein. Minimum limit 500 Coins (₹5) hai.';
+        } else if(lower.includes('coin') || lower.includes('earning')){
+            botMsgDiv.textContent = 'Aap Daily Bonus, Tasks, Games aur Spin Wheel se zyada coins kama sakte hain!';
+        } else if(lower.includes('refer') || lower.includes('share')){
+            botMsgDiv.textContent = 'Refer & Earn tab mein apna unique referral link copy karke friends ko invite karein.';
+        } else {
+            botMsgDiv.textContent = 'Aapka message mil gaya hai! Hamari support team jald hi aapse sampark karegi.';
+        }
+
+        chatBox.appendChild(botMsgDiv);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }, 800);
+}
+
+/* RESET */
 function resetLocalData(){
-
-    const yes =
-        confirm(
-            'Kya aap browser ka TaskEarn data reset karna chahte hain?'
-        );
-
-    if(!yes) return;
-
-    localStorage.removeItem(STORAGE.coins);
-    localStorage.removeItem(STORAGE.history);
-
+    if(!confirm('Kya aap browser ka TaskEarn data reset karna chahte hain?')) return;
+    localStorage.clear();
     location.reload();
-
 }
-
 </script>
 
 </body>
